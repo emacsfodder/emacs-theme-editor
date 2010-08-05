@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)http://alexpogosyan.com/color-theme-creator/ -->
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <TITLE>Emacs color-theme creator</TITLE>
+    <META content="Emacs color theme creator; build your own color-theme for emacs." name="description">
+    <STYLE type="text/css">
+    </STYLE>
+    <LINK rel="stylesheet" media="screen" type="text/css" href="./assets/themes.css">
+    <SCRIPT type="text/javascript" src="./assets/jquery14.js"></SCRIPT>
+    <SCRIPT type="text/javascript" src="./assets/farbtastic.js"></SCRIPT>
+    <SCRIPT type="text/javascript" src="./assets/themes.js"></SCRIPT>    
+  </HEAD><BODY id="aeaoofnhgocdbnbeljkmbjdmhbcokfdb-mousedown"> 
+<DIV id="home" style="position:absolute;top:3px;left:3px;"><A style="color:#666" href="http://alexpogosyan.com/projects/">←</A></DIV>
+    <DIV id="outer"> 
+      <DIV id="header">
+	<H1>Emacs color-theme creator</H1>
+      </DIV> 
+      <DIV id="content">
+<DIV id="desktop"><SPAN>Predefined themes:</SPAN>
+	<SELECT name="presets" id="themes" onchange="setTheme(themes[this.value]);">
+	  <OPTION value="-1">---Select theme---</OPTION>
+	  <OPTION value="0">Light</OPTION>
+	  <OPTION value="1">Dark</OPTION>
+	</SELECT>
+  <DIV id="frame" style="color: rgb(238, 238, 236); border-top-color: rgb(26, 26, 26); border-right-color: rgb(26, 26, 26); border-bottom-color: rgb(26, 26, 26); border-left-color: rgb(26, 26, 26); background-color: rgb(16, 30, 46); ">
+
+<PRE><SPAN class="keyword" style="color: rgb(114, 159, 207); ">import</SPAN> os, re
+<SPAN class="keyword" style="color: rgb(114, 159, 207); ">from</SPAN> sys <SPAN class="keyword" style="color: rgb(114, 159, 207); ">import</SPAN> <SPAN class="builtin" style="color: rgb(114, 159, 207); ">exit</SPAN>
+
+<SPAN class="constant" style="color: rgb(238, 238, 236); ">SOMECONST</SPAN> = None
+<SPAN class="variable" style="color: rgb(238, 238, 236); ">somevar</SPAN> = <SPAN class="builtin" style="color: rgb(114, 159, 207); ">min</SPAN>(<SPAN class="builtin" style="color: rgb(114, 159, 207); ">sum</SPAN>(1,2), <SPAN class="builtin" style="color: rgb(114, 159, 207); ">max</SPAN>(<SPAN class="builtin" style="color: rgb(114, 159, 207); ">range</SPAN>(10)))
+
+<SPAN class="keyword" style="color: rgb(114, 159, 207); ">def</SPAN> <SPAN class="function" style="color: rgb(237, 212, 0); ">some_callable</SPAN>(argument1, argument2=False):
+    <SPAN class="string" style="color: rgb(173, 127, 168); ">""" Doc-string for some_callable function. """</SPAN>
+    <SPAN class="keyword" style="color: rgb(114, 159, 207); ">if</SPAN> <SPAN class="keyword" style="color: rgb(114, 159, 207); ">not</SPAN> argument1:
+        <SPAN class="keyword" style="color: rgb(114, 159, 207); ">return</SPAN> <SPAN class="constant">None</SPAN>
+    <SPAN class="keyword" style="color: rgb(114, 159, 207); ">try</SPAN>:
+        argument1.do_stuff()
+    <SPAN class="keyword" style="color: rgb(114, 159, 207); ">except</SPAN> (<SPAN class="type" style="color: rgb(138, 226, 52); ">AttributeError</SPAN>): <SPAN class="comment" style="color: rgb(136, 138, 133); "># some comments</SPAN>
+        <SPAN class="keyword" style="color: rgb(114, 159, 207); ">if</SPAN> <SPAN class="keyword" style="color: rgb(114, 159, 207); ">not</SPAN> can_fail:
+            <SPAN class="keyword" style="color: rgb(114, 159, 207); ">raise</SPAN>
+<SPAN class="region" style="background-color: rgb(13, 69, 25); ">    <SPAN class="keyword" style="color: rgb(114, 159, 207); ">return</SPAN> argument1</SPAN><SPAN id="cursor" style="background-color: rgb(252, 233, 79); "> </SPAN>
+
+
+<SPAN class="keyword" style="color: rgb(114, 159, 207); ">class</SPAN> <SPAN class="type" style="color: rgb(138, 226, 52); ">RegexPattern</SPAN>(<SPAN class="builtin" style="color: rgb(114, 159, 207); ">object</SPAN>):
+    <SPAN class="keyword" style="color: rgb(114, 159, 207); ">def</SPAN> <SPAN class="function" style="color: rgb(237, 212, 0); ">__init__</SPAN>(<SPAN class="keyword" style="color: rgb(114, 159, 207); ">self</SPAN>, regex, name):
+        <SPAN class="keyword" style="color: rgb(114, 159, 207); ">self</SPAN>.regex = re.compile(regex)
+        <SPAN class="keyword" style="color: rgb(114, 159, 207); ">self</SPAN>.name = name
+
+    <SPAN class="keyword" style="color: rgb(114, 159, 207); ">def</SPAN> <SPAN class="function" style="color: rgb(237, 212, 0); ">__repr__</SPAN>(<SPAN class="keyword" style="color: rgb(114, 159, 207); ">self</SPAN>):
+        <SPAN class="keyword" style="color: rgb(114, 159, 207); ">return</SPAN> <SPAN class="string" style="color: rgb(173, 127, 168); ">'string &lt;%s with %s&gt; formatting'</SPAN> % (<SPAN class="keyword" style="color: rgb(114, 159, 207); ">self</SPAN>.name, <SPAN class="keyword" style="color: rgb(114, 159, 207); ">self</SPAN>.regex)
+
+    <SPAN class="keyword" style="color: rgb(114, 159, 207); ">def</SPAN> <SPAN class="function" style="color: rgb(237, 212, 0); ">resolve</SPAN>(<SPAN class="keyword" style="color: rgb(114, 159, 207); ">self</SPAN>, path):
+        match = <SPAN class="keyword" style="color: rgb(114, 159, 207); ">self</SPAN>.regex.search(path)
+        <SPAN class="keyword" style="color: rgb(114, 159, 207); ">if</SPAN> match:
+            <SPAN class="comment" style="color: rgb(136, 138, 133); "># Even more comments.
+            # I love writing comments.</SPAN>
+            <SPAN class="keyword" style="color: rgb(114, 159, 207); ">if</SPAN> kwargs:
+                args = ()
+            <SPAN class="keyword" style="color: rgb(114, 159, 207); ">else</SPAN>:
+                args = match.groups()
+            <SPAN class="keyword" style="color: rgb(114, 159, 207); ">return</SPAN> args, kwargs
+      </PRE>
+      <DIV id="modeline" style="color: rgb(238, 238, 236); background-color: rgb(85, 87, 83); "><PRE>--:**-   project.py     Bot 10% L20     (Python)-------------------------</PRE></DIV>
+      <PRE><SPAN id="prompt" style="color: rgb(114, 159, 207); "><B>I-search:</B></SPAN></PRE>
+  </DIV>
+</DIV>
+
+<DIV id="dashboard">
+  <DIV id="colorpicker"><DIV class="farbtastic"><DIV class="color" style="background-color: rgb(0, 123, 255); "></DIV><DIV class="wheel"></DIV><DIV class="overlay"></DIV><DIV class="h-marker marker" style="left: 54px; top: 169px; "></DIV><DIV class="sl-marker marker" style="left: 98px; top: 84px; "></DIV></DIV></DIV>
+  <INPUT type="text" id="configname" value="your-config-name-here">
+    <LABEL for="rbg">
+      <INPUT type="radio" name="els" value="background" id="rbg">
+      Background color
+    </LABEL>
+    <LABEL for="rfg">
+      <INPUT type="radio" name="els" value="foreground" id="rfg">
+      Basic foreground color
+    </LABEL>
+    <LABEL for="rkw">
+      <INPUT type="radio" name="els" value="keyword" id="rkw">
+      Keywords
+    </LABEL>
+    <LABEL for="rcmt">
+      <INPUT type="radio" name="els" value="comment" id="rcmt">
+      Comments
+    </LABEL>
+    <LABEL for="rbt">
+      <INPUT type="radio" name="els" value="builtin" id="rbt">
+      Built-ins
+    </LABEL>
+    <LABEL for="rtp">
+      <INPUT type="radio" name="els" value="type" id="rtp">
+      Classes (types)
+    </LABEL>
+    <LABEL for="rvar">
+      <INPUT type="radio" name="els" value="variable" id="rvar">
+      Variables
+    </LABEL>
+    <LABEL for="rconst">
+      <INPUT type="radio" name="els" value="constant" id="rconst">
+      Constants
+    </LABEL>
+    <LABEL for="rstr">
+      <INPUT type="radio" name="els" value="string" id="rstr">
+      Strings
+    </LABEL>
+    <LABEL for="rfun">
+      <INPUT type="radio" name="els" value="function" id="rfun">
+      Functions
+    </LABEL>
+    <LABEL for="rcr">
+      <INPUT type="radio" name="els" value="cursor" id="rcr">
+      Cursor color
+    </LABEL>
+    <LABEL for="rbd">
+      <INPUT type="radio" name="els" value="border" id="rbd">
+      Frame Borders
+    </LABEL>
+    <LABEL for="modbg">
+      <INPUT type="radio" name="els" value="modelinebg" id="modbg">
+      Modeline background
+    </LABEL>
+    <LABEL for="reg">
+      <INPUT type="radio" name="els" value="region" id="reg">
+      Selected region
+    </LABEL>
+    <LABEL for="modfg">
+      <INPUT type="radio" name="els" value="modelinefg" id="modfg">
+      Modeline font color
+    </LABEL>
+    <LABEL for="pmp">
+      <INPUT type="radio" name="els" value="prompt" id="pmp">
+      Minibuffer prompt
+    </LABEL>
+    <BUTTON id="generate">Generate config file</BUTTON>
+    <TEXTAREA id="pastebox" width="20" height="5"></TEXTAREA>
+    <BUTTON id="loadtheme">Load theme</BUTTON>
+</DIV>
+
+<DIV id="config">
+  <A id="close" href="http://alexpogosyan.com/color-theme-creator/#" style="float:right">Close [Esc]</A>
+  <P>You'll need <A href="http://www.nongnu.org/color-theme/">color-theme</A> installed. Copy this config and put it into a file on your emacs load path or directly in your .emacs. </P>
+</DIV>
+</DIV>
+</DIV>
+ 
+
+</BODY></HTML>
