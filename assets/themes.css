@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-    color: #000;
+    color: #444;
     background-color: #fff;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -14,7 +14,7 @@ body {
 
 #outer {
     min-height: 100%;
-    background-color: #ddd;
+    background-color: #000;
     max-width: 900px;
     margin: auto; /* center it */
     text-align: left;
@@ -62,6 +62,20 @@ label {
 pre {
     margin: 0 0 0 0;
     padding: 0;
+
+    /* Perhaps we set the default text font-face too? 
+       For the moment we won't, because we may not 
+       have the font-face preferred.*/
+    font-family: 
+    Consolas, 
+    Inconsolata, 
+    Monaco, 
+    'Droid Sans Mono',
+    'Lucida Console',
+    'Courier New';
+
+    font-size: 10pt;
+
     }
 #predef {
     color: 222;
@@ -140,9 +154,15 @@ pre {
     color: blue;
 }
 
-#generate {
-margin: .5em 0;
-width: 195px;
+#generate, #loadtheme {
+    margin: .5em 0;
+    width: 195px;
+}
+
+#pastebox {
+    background-color: #222;
+    color: #fff;
+    height: 120px;
 }
 
 #configname {
@@ -183,4 +203,3 @@ width: 195px;
   overflow: hidden; 
   background: url(marker.png) no-repeat;
 }
-
