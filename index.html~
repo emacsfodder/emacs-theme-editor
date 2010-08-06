@@ -137,7 +137,7 @@
     <button id="generate">Generate config file</button>
     <HR/>
     <button id="loadtheme">Load theme</button>
-    <textarea id="pastebox" width="20" height="5">Paste theme code in here ... theme's must at least support the faces customized in this editor, additional settings will not be preserved.</textarea>
+    <textarea id="pastebox" width="20" height="5">theme's must at least support the faces customized in this editor, additional settings will not be preserved.</textarea>
 </div>
 <div id="config">
   <a id="close" href="http://alexpogosyan.com/color-theme-creator/#" style="float:right">Close [Esc]</A>

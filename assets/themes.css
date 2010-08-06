@@ -11,7 +11,6 @@ body {
     text-align: center;
 }
 
-
 #outer {
     min-height: 100%;
     background-color: #000;
@@ -73,9 +72,11 @@ pre {
 
     font-size: 11pt;
 }
+
 #predef {
     color: 222;
 }
+
 #frame {
     border-left: 10px solid #000;
     border-right: 10px solid #000;
@@ -91,15 +92,15 @@ pre {
 #prompt {
     color: #7299ff;
 }
-.builtin {
 
+.builtin {
 }
 
 .region {
     background-color: #999;
 }
-.comment {
 
+.comment {
 }
 
 .constant {
@@ -109,7 +110,6 @@ pre {
 }
 
 .keyword {
-
 }
 
 .string {
@@ -135,8 +135,7 @@ pre {
     background-color: #eee;
     border: 5px solid #000;
     display: none;
-    padding: 10px;
-    
+    padding: 10px;    
 }
 
 .confarea {
@@ -170,28 +169,34 @@ pre {
 .farbtastic {
     position: relative;
 }
+
 .farbtastic * {
     position: absolute;
     cursor: crosshair;
 }
+
 .farbtastic, .farbtastic .wheel {
     width: 195px;
     height: 195px;
 }
+
 .farbtastic .color, .farbtastic .overlay {
     top: 47px;
     left: 47px;
     width: 101px;
     height: 101px;
 }
+
 .farbtastic .wheel {
     background: url(wheel.png) no-repeat;
     width: 195px;
     height: 195px;
 }
+
 .farbtastic .overlay {
     background: url(mask.png) no-repeat;
 }
+
 .farbtastic .marker {
     width: 17px;
     height: 17px;
