@@ -223,7 +223,7 @@ function getConfig() {
 	'     (font-lock-constant-face ((t (:foreground "' + getcol('constant') + '"))))',
 	'     (font-lock-variable-name-face ((t (:foreground "' + getcol('variable') + '"))))',
 	'     (minibuffer-prompt ((t (:foreground "' + getcol('prompt') + '" :bold t))))',
-	'     (font-lock-warning-face ((t (:foreground "Red" :bold t))))',
+	'     (font-lock-warning-face ((t (:foreground "red" :bold t))))',
 	'     )))',
 	'(provide \'' + confname + ')',
     ];
