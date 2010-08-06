@@ -18,14 +18,10 @@ body {
     max-width: 900px;
     margin: auto; /* center it */
     text-align: left;
-
 }
-
 
 #header {
-    background-color: #999;
 }
-
 
 #content {
     padding: 0 2em;
@@ -33,8 +29,9 @@ body {
 }
 
 h1 {
-margin: 0 1em;
-font-size: 1.5em;
+    color: #e9771a;
+    margin: 0 1em;
+    font-size: 1.5em;
 }
 
 select {
@@ -74,12 +71,11 @@ pre {
     'Lucida Console',
     'Courier New';
 
-    font-size: 10pt;
-
-    }
+    font-size: 11pt;
+}
 #predef {
     color: 222;
-    }
+}
 #frame {
     border-left: 10px solid #000;
     border-right: 10px solid #000;
@@ -101,7 +97,7 @@ pre {
 
 .region {
     background-color: #999;
-    }
+}
 .comment {
 
 }
@@ -172,34 +168,34 @@ pre {
 }
 
 .farbtastic {
-  position: relative;
+    position: relative;
 }
 .farbtastic * {
-  position: absolute;
-  cursor: crosshair;
+    position: absolute;
+    cursor: crosshair;
 }
 .farbtastic, .farbtastic .wheel {
-  width: 195px;
-  height: 195px;
+    width: 195px;
+    height: 195px;
 }
 .farbtastic .color, .farbtastic .overlay {
-  top: 47px;
-  left: 47px;
-  width: 101px;
-  height: 101px;
+    top: 47px;
+    left: 47px;
+    width: 101px;
+    height: 101px;
 }
 .farbtastic .wheel {
-  background: url(wheel.png) no-repeat;
-  width: 195px;
-  height: 195px;
+    background: url(wheel.png) no-repeat;
+    width: 195px;
+    height: 195px;
 }
 .farbtastic .overlay {
-  background: url(mask.png) no-repeat;
+    background: url(mask.png) no-repeat;
 }
 .farbtastic .marker {
-  width: 17px;
-  height: 17px;
-  margin: -8px 0 0 -8px;
-  overflow: hidden; 
-  background: url(marker.png) no-repeat;
+    width: 17px;
+    height: 17px;
+    margin: -8px 0 0 -8px;
+    overflow: hidden; 
+    background: url(marker.png) no-repeat;
 }
