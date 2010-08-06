@@ -6,7 +6,7 @@ html, body {
 
 body {
     color: #444;
-    background-color: #000;
+    background-color: #fff;
     font-family: Arial, sans-serif;
     text-align: center;
 }
