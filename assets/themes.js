@@ -149,10 +149,6 @@ function rgb2hex(rgb) {
     }
 }  
 
-/*
- * load a config (from a textarea etc) it must be in the exact 
- * same form as the theme was generated.
- */
 function loadConfig(conf) {
 
     $('#configname').val(conf.match(/defun ([^ ]*)/)[1]);
