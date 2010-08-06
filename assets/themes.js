@@ -1,5 +1,22 @@
 var picker;
 
+var foregroundRegEx = /foreground-color \. "([^"]*)"/;
+var builtinRegEx = /font-lock-builtin-face \(\(t \(:foreground "([^"]*)"/;
+var commentRegEx = /font-lock-comment-face \(\(t \(:foreground "([^"]*)"/;
+var keywordRegEx = /font-lock-keyword-face \(\(t \(:foreground "([^"]*)"/;
+var variableRegEx = /font-lock-variable-name-face \(\(t \(:foreground "([^"]*)"/;
+var constantRegEx = /font-lock-constant-face \(\(t \(:foreground "([^"]*)"/;
+var stringRegEx = /font-lock-string-face \(\(t \(:foreground "([^"]*)"/;
+var typeRegEx = /font-lock-type-face \(\(t \(:foreground"([^"]*)"/;
+var functionRegEx = /font-lock-function-name-face \(\(t \(:foreground "([^"]*)"/;
+var borderRegEx = /border-color \. "([^"]*)"/;
+var backgroundRegEx = /background-color \. "([^"]*)"/;
+var modelinebgRegEx = /mode-line \(\(t \(:foreground "[^"]*" :background "([^"]*)"/;
+var modelinefgRegEx = /mode-line \(\(t \(:foreground "([^"]*)" :background "[^"]*"/;
+var cursorRegEx = /cursor-color \. "([^"]*)"/;
+var promptRegEx = /minibuffer-prompt \(\(t \(:foreground "([^"]*)"/;
+var regionRegEx = /region \(\(t \(:background "([^"]*)"/;
+
 var all = {
     "foreground": ["#frame", "color"],
     "builtin": [".builtin", "color"],
@@ -18,7 +35,6 @@ var all = {
     "prompt": ["#prompt", "color"],
     "region": [".region", "background-color", "backgroundColor"]
 };
-
 
 jQuery.fn.center = function () {
     this.css("position","absolute");
@@ -67,7 +83,7 @@ $(document).ready(function() {
 
     $("input[name='els']").change(function(){
 	setCurrent($(this).val());
-     });
+    });
 
     $('#loadtheme').click(function() {
 	loadConfig($('#pastebox').val());
@@ -118,6 +134,8 @@ function closebox() {
 }
 
 function rgb2hex(rgb) {
+    if (rgb == null)
+	return;
     if (rgb[0] == "#")
 	return rgb;
     else {
@@ -128,7 +146,7 @@ function rgb2hex(rgb) {
  	    return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];  
 	}  
 	return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-   }
+    }
 }  
 
 /*
@@ -137,25 +155,44 @@ function rgb2hex(rgb) {
  */
 function loadConfig(conf) {
 
-    $('#configname').val(conf.match(/\(defun ([^ ]*) \(\)/)[1]);
+    $('#configname').val(conf.match(/defun ([^ ]*)/)[1]);
+
+    var background, border, cursor, foreground, modelinefg, modelinebg, region, builtin, comment, functionName, keyword, string, type, constant, variable, prompt;
+
+    try {background = conf.match( backgroundRegEx )[1];} catch (err){}
+    try {border = conf.match( borderRegEx)[1];} catch (err){}
+    try {cursor = conf.match( cursorRegEx )[1];} catch (err){}
+    try {foreground = conf.match( foregroundRegEx )[1];} catch (err){}
+    try {modelinefg = conf.match( modelinefgRegEx )[1];} catch (err){}
+    try {modelinebg = conf.match( modelinebgRegEx )[1];} catch (err){}
+    try {region = conf.match( regionRegEx )[1];} catch (err){}
+    try {builtin = conf.match( builtinRegEx )[1];} catch (err){}
+    try {comment = conf.match( commentRegEx )[1];} catch (err){}
+    try {functionName = conf.match( functionRegEx )[1];} catch (err){}
+    try {keyword = conf.match( keywordRegEx )[1];} catch (err){}
+    try {string = conf.match( stringRegEx )[1];} catch (err){}
+    try {type = conf.match( typeRegEx )[1];} catch (err){}
+    try {constant = conf.match( constantRegEx )[1];} catch (err){}
+    try {variable = conf.match( variableRegEx )[1];} catch (err){}
+    try {prompt = conf.match( promptRegEx )[1];} catch (err){}
 
     var all = {
-    	'background':conf.match(/\(\(background-color \. "([^"]*)"/)[1],
-    	'border':conf.match(/\(border-color \. "([^"]*)"/)[1],
-    	'cursor':conf.match(/\(cursor-color \. "([^"]*)"/)[1],
-    	'foreground':conf.match(/\(foreground-color \. "([^"]*)"/)[1], 
-    	'modelinefg':conf.match(/\(mode-line \(\(t \(:foreground "([^"]*)" :background "([^"]*)"\)\)\)\)/)[1],
-    	'modelinebg':conf.match(/\(mode-line \(\(t \(:foreground "([^"]*)" :background "([^"]*)"\)\)\)\)/)[2],
-    	'region':conf.match(/\(region \(\(t \(:background "([^"]*)"\)\)\)\)/)[1], 
-    	'builtin':conf.match(/\(font-lock-builtin-face \(\(t \(:foreground "([^"]*)"\)\)\)\)/)[1], 
-    	'comment':conf.match(/\(font-lock-comment-face \(\(t \(:foreground "([^"]*)"\)\)\)\)/)[1], 
-    	'function':conf.match(/\(font-lock-function-name-face \(\(t \(:foreground "([^"]*)"\)\)\)\)/)[1], 
-    	'keyword':conf.match(/\(font-lock-keyword-face \(\(t \(:foreground "([^"]*)"\)\)\)\)/)[1], 
-    	'string':conf.match(/\(font-lock-string-face \(\(t \(:foreground "([^"]*)"\)\)\)\)/)[1], 
-    	'type':conf.match(/\(font-lock-type-face \(\(t \(:foreground"([^"]*)"\)\)\)\)/)[1],
-    	'constant':conf.match(/\(font-lock-constant-face \(\(t \(:foreground "([^"]*)"\)\)\)\)/)[1], 
-    	'variable':conf.match(/\(font-lock-variable-name-face \(\(t \(:foreground "([^"]*)"\)\)\)\)/)[1], 
-    	'prompt':conf.match(/\(minibuffer-prompt \(\(t \(:foreground "([^"]*)" :bold t\)\)\)\)/)[1]
+    	'background':background,
+    	'border':border,
+    	'cursor':cursor,
+    	'foreground':foreground,
+    	'modelinefg':modelinefg,
+    	'modelinebg':modelinebg,
+    	'region':region,
+    	'builtin':builtin, 
+    	'comment':comment,
+    	'function':functionName,
+    	'keyword':keyword,
+    	'string':string,
+    	'type':type,
+    	'constant':constant,
+    	'variable':variable,
+    	'prompt':prompt
     };
 
     setTheme(all);
