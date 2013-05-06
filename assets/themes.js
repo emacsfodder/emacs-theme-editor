@@ -92,8 +92,24 @@ $(document).ready(function() {
     $('#generate').click(function() {
 	$('#generate').attr('disabled', 'disabled');
 	$('#generate').blur();
-	$('<textarea class="confarea">' + getConfig() + '</textarea>').appendTo('#config');
-	$("<p class='msg'>After that, put this into your .emacs:</p><pre class='msg'>(require 'color-theme)<br/>(color-theme-initialize)<br/>(your-config-name)<br/></pre><br><span class='msg'>and you're done.</span>").appendTo('#config');
+
+	var txt = '<a id="close" href="#" style="float:right">Close [Esc]</a>';
+	var confname = $('#configname').val();
+	var deftheme = $('#deftheme')[0].checked;
+
+	if(deftheme) {
+		var confcode = '<textarea class="confarea">' + getConfigDeftheme() + '</textarea>';
+		txt += '<p>Write the following code in <code>.emacs.d/' + confname + '-theme.el</code>';
+		txt += confcode;
+		txt += '<p>After that, put this in your .emacs</p><pre class="msg">(load-theme \'' + confname  +' t)<br/></pre><p>Restart, you\'re done.</p>';
+	} else {
+		var confcode = '<textarea class="confarea">' + getConfigColorTheme() + '</textarea>';
+		txt += '<p>You\'ll need <a href="http://www.nongnu.org/color-theme/">color-theme</a> installed. Copy this config and put it into a file on your emacs load path or directly in your .emacs. </p>';
+		txt += confcode;
+		txt += "<p class='msg'>After that, put this into your .emacs:</p><pre class='msg'>(require 'color-theme)<br/>(color-theme-initialize)<br/>(your-config-name)<br/></pre><p class='msg'>and you're done.</p>";
+	}
+
+	$('#config').html(txt);
 	$('#config').center()
 	$('#config').fadeIn("fast");
     });
@@ -147,7 +163,8 @@ function rgb2hex(rgb) {
     }
 }  
 
-function getConfig() {
+// for color-theme package
+function getConfigColorTheme() {
     var confname = $('#configname').val();
     var conf = [
 	'(defun ' + confname +' ()',
@@ -175,9 +192,40 @@ function getConfig() {
 	'     (font-lock-warning-face ((t (:foreground "red" :bold t))))',
 	'     )))',
 	'(provide \'' + confname + ')',
+    '',
     ];
     return conf.join('\n');
 }
+
+// for GNU Emacs 24+
+function getConfigDeftheme() {
+	var confname = $('#configname').val();
+	var conf = [
+	'(deftheme ' + confname +' "my custom theme")',
+	'(custom-theme-set-faces',
+	'  \'' + confname,
+	'  \'(default ((t (:foreground "' + getcol('foreground') + '" :background "'+ getcol('background') +'"))))',
+	'  \'(cursor ((t (:background "' + getcol('cursor') + '"))))',
+	'  \'(fringe ((t (:background "' + getcol('border') + '"))))',
+	'  \'(mode-line ((t (:foreground "' + getcol('modelinefg') + '" :background "' + getcol('modelinebg') + '"))))',
+	'  \'(region ((t (:background "' + getcol('region') + '"))))',
+	'  \'(font-lock-builtin-face ((t (:foreground "' + getcol('builtin') + '"))))',
+	'  \'(font-lock-comment-face ((t (:foreground "' + getcol('comment') + '"))))',
+	'  \'(font-lock-function-name-face ((t (:foreground "' + getcol('function') + '"))))',
+	'  \'(font-lock-keyword-face ((t (:foreground "' + getcol('keyword') + '"))))',
+	'  \'(font-lock-string-face ((t (:foreground "' + getcol('string') + '"))))',
+	'  \'(font-lock-type-face ((t (:foreground"' + getcol('type') + '"))))',
+	'  \'(font-lock-constant-face ((t (:foreground "' + getcol('constant') + '"))))',
+	'  \'(font-lock-variable-name-face ((t (:foreground "' + getcol('variable') + '"))))',
+	'  \'(minibuffer-prompt ((t (:foreground "' + getcol('prompt') + '" :bold t))))',
+	'  \'(font-lock-warning-face ((t (:foreground "red" :bold t))))',
+	')',
+	'(provide-theme \'' + confname + ')',
+	'',
+	];
+	return conf.join('\n');
+}
+
 
 var themes = [
     {
