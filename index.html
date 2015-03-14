@@ -1,150 +1,237 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD Xhtml 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-    <title>Emacs color-theme creator</title>
-    <meta content="Emacs color theme creator; build your own color-theme for emacs." name="description">
-    <style type="text/css">
-    </style>
-    <link rel="stylesheet" media="screen" type="text/css" href="./assets/themes.css">
-    <script type="text/javascript" src="./assets/jquery14.js"></script>
-    <script type="text/javascript" src="./assets/farbtastic.js"></script>
-    <script type="text/javascript" src="./assets/themes.js"></script>    
-  </head><body> 
-    <div id="outer"> 
-      <div id="header">
-	<h1>Emacs color-theme creator</h1>
-      </div> 
-      <div id="content">
-<div id="desktop"><span>Predefined themes:</span>
-	<select name="presets" id="themes" onchange="setTheme(themes[this.value]);">
-	  <option value="-1">---Select theme---</option>
-	  <option value="0">Light</option>
-	  <option value="1">Dark</option>
-	</select>
-  <div id="frame" style="color: rgb(238, 238, 236); border-top-color: rgb(26, 26, 26); border-right-color: rgb(26, 26, 26); border-bottom-color: rgb(26, 26, 26); border-left-color: rgb(26, 26, 26); background-color: rgb(16, 30, 46); ">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <title>Emacs Theme Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'/>
+    <link href="./css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="./css/styles.css" rel="stylesheet"/>
+    <link href="./css/spectrum.css" rel="stylesheet"/>
+    <link href="./css/themes.css" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+  </head>
+  <body>
+    <!-- Header -->
+    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Emacs Theme Editor</a>
+        </div>
+      </div><!-- /container -->
+    </div>
+    <!-- /Header -->
 
-<pre><span class="keyword" style="color: rgb(114, 159, 207); ">import</span> os, re
-<span class="keyword" style="color: rgb(114, 159, 207); ">from</span> sys <span class="keyword" style="color: rgb(114, 159, 207); ">import</span> <span class="builtin" style="color: rgb(114, 159, 207); ">exit</span>
+    <!-- Main -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="panel panel-default"> <!-- Left column -->
+            <div class="panel-heading">
+              <div class="form-group">
+                <label for="configname">Theme name</label>
+                <input class="form-control" id="configname" type="text" placeholder="Theme name"/>
+              </div>
+            </div>
+            <div class="panel-body color-controls-panel">
+              <ul class="list-unstyled collapse in" id="userMenu">
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rbg">Background</label>
+                    <input type="color" class="els" name="background" id="rbg"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rfg">Foreground</label>
+                    <input type="color" class="els" name="foreground" id="rfg"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rkw">Keywords</label>
+                    <input type="color" class="els" name="keyword" id="rkw"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rcmt">Comments</label>
+                    <input type="color" class="els" name="comment" id="rcmt"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rbt">Builtins</label>
+                    <input type="color" class="els" name="builtin" id="rbt"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rtp">Class/Type</label>
+                    <input type="color" class="els" name="type" id="rtp"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rvar">Variables</label>
+                    <input type="color" class="els" name="variable" id="rvar"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rconst">Constants</label>
+                    <input type="color" class="els" name="constant" id="rconst"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rstr">Strings</label>
+                    <input type="color" class="els" name="string" id="rstr"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rfun">Functions</label>
+                    <input type="color" class="els" name="function" id="rfun"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rcr">Cursor color</label>
+                    <input type="color" class="els" name="cursor" id="rcr"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="reg">Selection bg</label>
+                    <input type="color" class="els" name="region" id="reg"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="rbd">Fringe bg</label>
+                    <input type="color" class="els" name="border" id="rbd"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="modbg">Modeline bg</label>
+                    <input type="color" class="els" name="modelinebg" id="modbg"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="modfg">Modeline fg</label>
+                    <input type="color" class="els" name="modelinefg" id="modfg"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group color-group">
+                    <label for="pmp">Minibuffer fg</label>
+                    <input type="color" class="els" name="prompt" id="pmp"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group side-label">
+                    <label for="deftheme">Emacs 24 deftheme</label>
+                    <input type="checkbox" checked="true" name="deftheme" value="deftheme" id="deftheme"/>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group side-label">
+                    <button class="btn btn-primary" style="width: 100%;" id="generate">Generate</button>
+                  </div>
+                </li>
+                <li>
+                  <div class="form-group side-label">
+                    <label for="import_theme">Import theme</label>
+                    <input class="btn" type="file" name="import_theme" id="import_theme" onchange="importThemeHandler(event)"/>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /Left column -->
+        <div class="col-sm-9" > <!-- right panel -->
+          <div class="row">
+            <div id="desktop" class="panel panel-default">
+              <div class="panel-heading">
+                <span>Base Theme</span>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" onchange="setTheme(themes[this.value])" checked="yes" value="1"/> Dark
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" onchange="setTheme(themes[this.value])" value="0"/> Light
+                </label>           </div>
+              <div class="panel-body code-panel">
+                <div id="frame">
+<!-- Do not play with this formatting  -->
+<pre><span class="keyword">import</span> os, re
+<span class="keyword">from</span> sys <span class="keyword">import</span> <span class="builtin">exit</span>
 
-<span class="constant" style="color: rgb(238, 238, 236); ">SOMECONST</span> = None
-<span class="variable" style="color: rgb(238, 238, 236); ">somevariable</span> = <span class="builtin" style="color: rgb(114, 159, 207); ">min</span>(<span class="builtin" style="color: rgb(114, 159, 207); ">sum</span>(1,2), <span class="builtin" style="color: rgb(114, 159, 207); ">max</span>(<span class="builtin" style="color: rgb(114, 159, 207); ">range</span>(10)))
+<span class="constant">SOMECONST</span> = None
+<span class="variable">somevariable</span> = <span class="builtin">min</span>(<span class="builtin">sum</span>(1,2), <span class="builtin">max</span>(<span class="builtin">range</span>(10)))
 
-<span class="keyword" style="color: rgb(114, 159, 207); ">def</span> <span class="function" style="color: rgb(237, 212, 0); ">some_callable</span>(argument1, argument2=False):
-    <span class="string" style="color: rgb(173, 127, 168); ">""" Doc-string for some_callable function. """</span>
-    <span class="keyword" style="color: rgb(114, 159, 207); ">if</span> <span class="keyword" style="color: rgb(114, 159, 207); ">not</span> argument1:
-        <span class="keyword" style="color: rgb(114, 159, 207); ">return</span> <span class="constant">None</span>
-    <span class="keyword" style="color: rgb(114, 159, 207); ">try</span>:
+<span class="keyword">def</span> <span class="function">some_callable</span>(argument1, argument2=False):
+    <span class="string">""" Doc-string for some_callable function. """</span>
+    <span class="keyword">if</span> <span class="keyword">not</span> argument1:
+        <span class="keyword">return</span> <span class="constant">None</span>
+    <span class="keyword">try</span>:
         argument1.do_stuff()
-    <span class="keyword" style="color: rgb(114, 159, 207); ">except</span> (<span class="type" style="color: rgb(138, 226, 52); ">AttributeError</span>): <span class="comment" style="color: rgb(136, 138, 133); "># some comments</span>
-        <span class="keyword" style="color: rgb(114, 159, 207); ">if</span> <span class="keyword" style="color: rgb(114, 159, 207); ">not</span> can_fail:
-            <span class="keyword" style="color: rgb(114, 159, 207); ">raise</span>
-<span class="region" style="background-color: rgb(13, 69, 25); ">    <span class="keyword" style="color: rgb(114, 159, 207); ">return</span> argument1</span><span id="cursor" style="background-color: rgb(252, 233, 79); "> </span>
+    <span class="keyword">except</span> (<span class="type">AttributeError</span>): <span class="comment"># some comments</span>
+        <span class="keyword">if</span> <span class="keyword">not</span> can_fail:
+            <span class="keyword">raise</span>
+<span class="region">    <span class="keyword">return</span> argument1</span><span id="cursor"> </span>
 
 
-<span class="keyword" style="color: rgb(114, 159, 207); ">class</span> <span class="type" style="color: rgb(138, 226, 52); ">RegexPattern</span>(<span class="builtin" style="color: rgb(114, 159, 207); ">object</span>):
-    <span class="keyword" style="color: rgb(114, 159, 207); ">def</span> <span class="function" style="color: rgb(237, 212, 0); ">__init__</span>(<span class="keyword" style="color: rgb(114, 159, 207); ">self</span>, regex, name):
-        <span class="keyword" style="color: rgb(114, 159, 207); ">self</span>.regex = re.compile(regex)
-        <span class="keyword" style="color: rgb(114, 159, 207); ">self</span>.name = name
+<span class="keyword">class</span> <span class="type">RegexPattern</span>(<span class="builtin">object</span>):
+    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, regex, name):
+        <span class="keyword">self</span>.regex = re.compile(regex)
+        <span class="keyword">self</span>.name = name
 
-    <span class="keyword" style="color: rgb(114, 159, 207); ">def</span> <span class="function" style="color: rgb(237, 212, 0); ">__repr__</span>(<span class="keyword" style="color: rgb(114, 159, 207); ">self</span>):
-        <span class="keyword" style="color: rgb(114, 159, 207); ">return</span> <span class="string" style="color: rgb(173, 127, 168); ">'string &lt;%s with %s&gt; formatting'</span> % (<span class="keyword" style="color: rgb(114, 159, 207); ">self</span>.name, <span class="keyword" style="color: rgb(114, 159, 207); ">self</span>.regex)
+    <span class="keyword">def</span> <span class="function">__repr__</span>(<span class="keyword">self</span>):
+        <span class="keyword">return</span> <span class="string">'string &lt;%s with %s&gt; formatting'</span> % (<span class="keyword">self</span>.name, <span class="keyword">self</span>.regex)
 
-    <span class="keyword" style="color: rgb(114, 159, 207); ">def</span> <span class="function" style="color: rgb(237, 212, 0); ">resolve</span>(<span class="keyword" style="color: rgb(114, 159, 207); ">self</span>, path):
-        match = <span class="keyword" style="color: rgb(114, 159, 207); ">self</span>.regex.search(path)
-        <span class="keyword" style="color: rgb(114, 159, 207); ">if</span> match:
-            <span class="comment" style="color: rgb(136, 138, 133); "># Even more comments.
+    <span class="keyword">def</span> <span class="function">resolve</span>(<span class="keyword">self</span>, path):
+        match = <span class="keyword">self</span>.regex.search(path)
+        <span class="keyword">if</span> match:
+            <span class="comment"># Even more comments.
             # I love writing comments.</span>
-            <span class="keyword" style="color: rgb(114, 159, 207); ">if</span> kwargs:
+            <span class="keyword">if</span> kwargs:
                 args = ()
-            <span class="keyword" style="color: rgb(114, 159, 207); ">else</span>:
+            <span class="keyword">else</span>:
                 args = match.groups()
-            <span class="keyword" style="color: rgb(114, 159, 207); ">return</span> args, kwargs
-      </pre>
-      <div id="modeline" style="color: rgb(238, 238, 236); background-color: rgb(85, 87, 83); "><pre>--:**-   project.py     Bot 10% L20     (Python)-------------------------</pre></div>
-      <pre><span id="prompt" style="color: rgb(114, 159, 207); "><B>I-search:</B></span></pre>
-  </div>
-    <p class="note">Get randomly generated themes for Emacs from <a href="http://sweyla.com/themes/">http://sweyla.com/themes/</a> - You can edit them here.</p>
+            <span class="keyword">return</span> args, kwargs
+</pre>
+<!-- end code sample formatting -->
+              <div id="modeline">
+                <pre id="modeline-text">--:**-   project.py     Bot 10% L20     (Python)-------------------------</pre>
+              </div>
+            <pre id="prompt"><B>I-search:</B></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!--/right panel-->
+</div>
+<!-- /Main -->
 
-
-</div>
-
-<div id="dashboard">
-  <div id="colorpicker"><div class="farbtastic"><div class="color" style="background-color: rgb(0, 123, 255); "></div><div class="wheel"></div><div class="overlay"></div><div class="h-marker marker" style="left: 54px; top: 169px; "></div><div class="sl-marker marker" style="left: 98px; top: 84px; "></div></div></div>
-  <input type="text" id="configname" value="your-config-name-here">
-    <label for="rbg">
-      <input type="radio" name="els" value="background" id="rbg">
-      Background color
-    </label>
-    <label for="rfg">
-      <input type="radio" name="els" value="foreground" id="rfg">
-      Basic foreground color
-    </label>
-    <label for="rkw">
-      <input type="radio" name="els" value="keyword" id="rkw">
-      Keywords
-    </label>
-    <label for="rcmt">
-      <input type="radio" name="els" value="comment" id="rcmt">
-      Comments
-    </label>
-    <label for="rbt">
-      <input type="radio" name="els" value="builtin" id="rbt">
-      Built-ins
-    </label>
-    <label for="rtp">
-      <input type="radio" name="els" value="type" id="rtp">
-      Classes (types)
-    </label>
-    <label for="rvar">
-      <input type="radio" name="els" value="variable" id="rvar">
-      Variables
-    </label>
-    <label for="rconst">
-      <input type="radio" name="els" value="constant" id="rconst">
-      Constants
-    </label>
-    <label for="rstr">
-      <input type="radio" name="els" value="string" id="rstr">
-      Strings
-    </label>
-    <label for="rfun">
-      <input type="radio" name="els" value="function" id="rfun">
-      Functions
-    </label>
-    <label for="rcr">
-      <input type="radio" name="els" value="cursor" id="rcr">
-      Cursor color
-    </label>
-    <label for="rbd">
-      <input type="radio" name="els" value="border" id="rbd">
-      Frame Borders
-    </label>
-    <label for="modbg">
-      <input type="radio" name="els" value="modelinebg" id="modbg">
-      Modeline background
-    </label>
-    <label for="reg">
-      <input type="radio" name="els" value="region" id="reg">
-      Selected region
-    </label>
-    <label for="modfg">
-      <input type="radio" name="els" value="modelinefg" id="modfg">
-      Modeline font color
-    </label>
-    <label for="pmp">
-      <input type="radio" name="els" value="prompt" id="pmp">
-      Minibuffer prompt
-    </label>
-    <label for="deftheme">
-      <input type="checkbox" name="deftheme" value="deftheme" id="deftheme">
-      Emacs 24 deftheme output
-    </label>
-    <button id="generate">Generate config file</button>
-    <HR/>
-    <button id="loadtheme">Load theme</button>
-    <textarea id="pastebox" width="20" height="5">Paste theme code in here ... theme's must at least support the faces customized in this editor, additional settings will not be preserved.</textarea>
-</div>
-<div id="config">
-</div>
-</div>
-</div>
-</body></html>
+<footer class="text-center">Emacs theme editor 2.0 for Emacs 24</footer>
+<!-- script references -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/scripts.js"></script>
+<script src="./js/lodash.js"></script>
+<script src="./js/spectrum.js"></script>
+<script src="./js/themes.js"></script>
+</body>
+</html>

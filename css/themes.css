@@ -1,0 +1,98 @@
+
+pre {
+  border: inherit;
+  border-radius: inherit;
+  color: inherit;
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.form-group {
+
+}
+
+.color-controls-panel {
+  padding: 0px;
+}
+
+.color-controls-panel li.padded {
+  padding: 10px 8px 10px 8px;
+}
+
+.color-controls-panel li.padded .form-group {
+  margin: 0;
+}
+
+.color-controls-panel ul li {
+
+}
+
+.code-panel {
+  padding: 0;
+}
+
+.color-group {
+  margin: 0;
+}
+
+.side-label {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  float: left;
+  margin: 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.color-group label {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  float: left;
+  margin: 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.sp-replacer {
+  float: right;
+  margin-top: -30px;
+  display: inline;
+}
+
+label {
+  font-weight: normal;
+}
+
+#modeline {
+  padding: 1px 0 0 0;
+  margin: 0 0 0 -5px;
+}
+
+#modeline-text {
+  margin: 0;
+  text-overflow: hidden;
+  white-space: nowrap;
+}
+
+#prompt {
+  padding: 3px 0px 2px 5px;
+  margin: 0 0 0 -5px;
+  border: none;
+}
+
+.navbar-brand {
+  font-size: 23pt;
+  text-transform: uppercase;
+  font-family: 'Oswald';
+  color: white !important;
+}
+
+.navbar-inverse {
+  background-color: #0F1411 !important;
+}
+
+#frame {
+  border-left: 5px solid;
+  padding: 0;
+}
