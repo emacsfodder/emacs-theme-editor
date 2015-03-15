@@ -141,18 +141,29 @@
                   </div>
                 </li>
                 <li>
+                  <div class='form-group side-label'>
+                    <label for='deftheme'>Emacs 24 deftheme</label>
+                    <input checked='true' id='deftheme' name='deftheme' type='checkbox' value='deftheme'>
+                  </div>
+                </li>
+                <li>
                   <div class='side-label'>
                     <div aria-label='actions' class='btn-group' id='action-bar' role='group'>
-                      <button class='btn btn-default' id='save'>
+                      <button class='btn btn-lg btn-default' id='local-storage' onclick='saveToLocalStorage()'>
+                        <span class='glyphicon glyphicon-plus'></span>
+                      </button>
+                      <button class='btn btn-lg btn-default' id='generate'>
                         <span class='glyphicon glyphicon-floppy-save'></span>
                       </button>
-                      <button class='btn btn-default' id='load'>
+                      <button class='btn btn-lg btn-default' id='load'>
                         <span class='glyphicon glyphicon-floppy-open'></span>
                       </button>
-                      <button class='btn btn-default' id='import'>
-                        <span class='glyphicon glyphicon-upload'></span>
-                      </button>
                     </div>
+                  </div>
+                </li>
+                <li>
+                  <div class='side-label'>
+                    <div id='user-themes'></div>
                   </div>
                 </li>
                 <li class='hidden'>
@@ -178,10 +189,11 @@
               </div>
             </div>
           </div>
+          <!-- /right panel -->
         </div>
       </div>
+      <div class='row' id='config'></div>
     </div>
-    <!-- /right panel -->
     <!-- /Main -->
     <footer class='text-center'>
       <small>Emacs theme editor Licenced under GNU/GPL2</small>

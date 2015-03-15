@@ -114,12 +114,19 @@ label {
 }
 
 button.sp-cancel {
-    background-image: linear-gradient(#FF5454, #710000);
-    color: white !important;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-    text-decoration: none !important;
+  background-image: linear-gradient(#FF5454, #710000);
+  color: white !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  text-decoration: none !important;
 }
 
 button.sp-cancel:hover {
-    text-decoration: none !important;
+  text-decoration: none !important;
+}
+
+.user-theme-removal-icon {
+  top: -23px;
+  font-size: 11px;
+  color: darkred;
+  right: -137px;
 }

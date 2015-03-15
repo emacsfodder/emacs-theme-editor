@@ -58,20 +58,23 @@
                       %label{:for => k[:id]} #{k[:title]}
                       %input.els{:name => k[:name], :id => k[:id], :type => "color" }
 
-                -# %li
-                -#   .form-group.side-label
-                -#     %label{:for => "deftheme"} Emacs 24 deftheme
-                -#     %input#deftheme{:checked => "true", :name => "deftheme", :type => "checkbox", :value => "deftheme"}/
+                %li
+                  .form-group.side-label
+                    %label{:for => "deftheme"} Emacs 24 deftheme
+                    %input#deftheme{:checked => "true", :name => "deftheme", :type => "checkbox", :value => "deftheme"}/
 
                 %li
                   .side-label
                     #action-bar.btn-group{:role => "group", "aria-label" => "actions"}
-                      %button#save.btn.btn-default
+                      %button#local-storage.btn.btn-lg.btn-default{:onclick => "saveToLocalStorage()"}
+                        %span.glyphicon.glyphicon-plus
+                      %button#generate.btn.btn-lg.btn-default
                         %span.glyphicon.glyphicon-floppy-save
-                      %button#load.btn.btn-default
+                      %button#load.btn.btn-lg.btn-default
                         %span.glyphicon.glyphicon-floppy-open
-                      %button#import.btn.btn-default
-                        %span.glyphicon.glyphicon-upload
+                %li
+                  .side-label
+                    #user-themes
                 %li.hidden
                   .form-group.side-label
                     %label{:for => "import_theme"} Import theme
@@ -85,7 +88,8 @@
                 #theme-selector
               .panel-body.code-panel
                 #code-sample
-    / /right panel
+          / /right panel
+      #config.row
     / /Main
     %footer.text-center
       %small Emacs theme editor Licenced under GNU/GPL2

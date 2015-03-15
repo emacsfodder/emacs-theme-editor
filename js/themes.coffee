@@ -1,6 +1,3 @@
-# Emacs Theme Editor 2015
-
-# We use a few multiline strings, which we need to clean.
 # This method will remove N leading spaces from a multiline string.
 # Processing each line.
 String::undent = (n=null)->
@@ -24,12 +21,16 @@ String::undent = (n=null)->
     line.replace(rx, '')
   .join("\n")
 
+# Emacs Theme Editor 2015
+live_theme = {}
+undo_theme = {}
+user_themes = {}
+
 # for GNU Emacs 24+
-getConfigDeftheme = ()->
-  confname = $('#configname').val()
+getConfigDeftheme = (name)->
   """
-  (deftheme #{confname} "DOCSTRING for #{confname}")
-    (custom-theme-set-faces '#{confname}
+  (deftheme #{name} "DOCSTRING for #{name}")
+    (custom-theme-set-faces '#{name}
      '(default ((t (:foreground "#{getColor("foreground")}" :background "#{getColor("background")}" ))))
      '(cursor ((t (:background "#{getColor("cursor")}" ))))
      '(fringe ((t (:background "#{getColor("border")}" ))))
@@ -46,17 +47,16 @@ getConfigDeftheme = ()->
      '(minibuffer-prompt ((t (:foreground "#{getColor("prompt")}" :bold t ))))
      '(font-lock-warning-face ((t (:foreground "red" :bold t ))))
      )
-  (provide-theme '#{confname})
+  (provide-theme '#{name})
   """.undent()
 
 # for color-theme.el package
-getConfigColorTheme = ()->
-  confname = $('#configname').val()
+getConfigColorTheme = (name)->
   """
-  (defun #{confname} ()
+  (defun #{name} ()
     (interactive)
     (color-theme-install
-     '(#{confname}
+     '(#{name}
         ((background-color . "#{getColor("background")}")
          (background-mode . light)
          (border-color . "#{getColor("border")}")
@@ -77,7 +77,7 @@ getConfigColorTheme = ()->
         (minibuffer-prompt ((t (:foreground "#{getColor("prompt")}" :bold t ))))
         (font-lock-warning-face ((t (:foreground "red" :bold t ))))
        )))
-  (provide '#{confname})
+  (provide '#{name})
   """.undent()
 
 # Master table of faces for emacs themes
@@ -145,30 +145,60 @@ master_table =
     rx: /font-lock-variable-name-face +\(\(t +\(.*:foreground +"([^"]*)"/
     el: ['.variable', 'color']
 
-elProp = (k)->
+elp = (k)->
   master_table[k].el[1]
 
 getColor = (k)->
-  $(master_table[k].el[0]).css elProp(k)
+  $(master_table[k].el[0]).css elp(k)
 
 setColor = (k, col)->
-  $(master_table[k].el[0]).css elProp(k), col
+  $(master_table[k].el[0]).css elp(k), col
   $("input[name=#{k}]").spectrum "set", col
   $("input[name=#{k}]").val(col)
   live_theme[k] = col
-
-closeThemeBox = ()->
-  $('#config').fadeOut 'fast', ()->
-    $('.confarea').remove()
-    $('.msg').remove()
-    $('#config br').remove()
-    $('#generate').removeAttr 'disabled'
 
 setTheme = (theme_json)->
   return unless theme_json
   o = JSON.parse theme_json
   _.each _.keys(o), (k)->
     setColor k, o[k]
+
+updateUserThemes = ()->
+  _.each _.keys(localStorage), (t)->
+    user_themes[t] = localStorage.getItem t
+  $.get './js/user-themes.handlebars', (file)->
+    template = Handlebars.compile file
+    $('#user-themes').html template user_themes: user_themes
+
+saveToLocalStorage = ()->
+  name = prompt "Save theme", "untitled"
+  return unless name
+  if localStorage.getItem name
+    @undo_theme = localStorage.getItem name
+    localStorage.setItem name, JSON.stringify @live_theme
+    updateUserThemes()
+
+removeTheme = (name)->
+  if localStorage.getItem name
+    @undo_theme = localStorage.getItem name
+    localStorage.removeItem name
+    updateUserThemes()
+
+## TODO: Implement UI for undo facility.
+#
+## TODO: Implement undo saves for color changes.  interface with
+##       Spectrum to get the previous color.
+
+setUndoKey = (k, v)->
+  undo = JSON.parse @undo_theme
+  undo[k] = v
+  @undo_theme = JSON.stringify undo
+
+setUndoLive = ()->
+  @undo_theme = JSON.stringify live_theme
+
+undo = ()->
+  setTheme @undo_theme
 
 loadConfig = (conf)->
   conf = "deftheme tessalate"
@@ -195,6 +225,11 @@ fromEmacsColor = (color, default_color)->
 
   color
 
+closeThemeBox = ()->
+  $('#config').hide()
+  $('#config .msg').remove()
+  $('#generate').removeAttr 'disabled'
+
 importThemeHandler = (e)->
   console.log "Import theme handler... init"
   reader = new FileReader()
@@ -212,12 +247,6 @@ importThemeHandler = (e)->
     console.log "Loaded", e
     console.log "Text:", reader.result
   reader.readAsText e.target.files[0]
-
-jQuery.fn.center = ()->
-  @css 'position', 'absolute'
-  @css 'top', 0
-  @css 'left', ($(window).width() - @width()) / 2 + $(window).scrollLeft() + 'px'
-  this
 
 $ ()->
 
@@ -254,66 +283,35 @@ $ ()->
     move: (color)->
       setColor this.name, color.toHexString()
 
+  updateUserThemes() if _.keys(localStorage).length > 0
+
   $('#generate').click ()->
     $('#generate').attr 'disabled', 'disabled'
     $('#generate').blur()
-    txt = """
-          <a id="close" href="#" style="float:right">Close [Esc]</a>
-          """
-    confname = $('#configname').val()
+    name = $('#configname').val()
+    unless name
+      name = prompt "Save theme", "untitled"
+      $('#configname').val(name)
+
     deftheme = $('#deftheme')[0].checked
-    if deftheme
-      txt += """
-             <div class="msg">
-               <p>Copy this into <code>.emacs.d/#{confname}-theme.el</code></p>
 
-               <textarea class="confarea">#{getConfigDeftheme()}</textarea>
-
-               <p>After that, put the following in your
-                 <code>~/.emacs</code> / <code>~/.emacs.d/init.el</code>
-               </p>
-
-               <p>
-                 <pre>(load-theme '#{confname} t)</pre>
-               </p>
-
-               <p>To load the theme straight away do
-                 <code>C-x C-e</code>
-               </p>
-             </div>
-             """.undent()
-
-
+    [template, config] = if deftheme
+      [
+        './js/deftheme-modal.handlebars'
+         getConfigDeftheme(name)
+      ]
     else
-      txt += """
-             <div class="msg">
-               <p>
-                 You'll need
-                 <a href="http://www.nongnu.org/color-theme/">color-theme.el</a>
-                 installed.
-               </p>
+      [
+        './js/color-theme-modal.handlebars'
+        getConfigColorTheme(name)
+      ]
 
-               <p>
-                 Copy this theme and put it into a file on your emacs load-path
-                 or directly in your .emacs
-               </p>
-
-               <textarea class="confarea">#{getConfigColorTheme()}</textarea>
-
-               <p>After that, put this into your .emacs:</p>
-
-               <p>
-                 <pre>(require 'color-theme)
-               (color-theme-initialize) (#{confname})</pre>
-               </p>
-
-               <p>and you're done.</p>
-             </div>
-             """.undent()
-
-    $('#config').html txt
-    $('#config').center()
-    $('#config').fadeIn 'fast'
+    $.get template, (file)->
+      compiled = Handlebars.compile file
+      c = compiled config: config, name: name
+      $('#config').html c
+      $('#config-panel').show()
+      document.getElementById('config').scrollTop()
 
   $(document).keydown (e)->
     if e.keyCode == 27
@@ -387,13 +385,10 @@ dark_tooth = """
 }
 """
 
-live_theme = {}
-
 themes =
-  "Dark Theme":  dark_theme
-  "Light Theme": light_theme
-  "Dark tooth":  dark_tooth
-
+  "Dark":  dark_theme
+  "Light": light_theme
+  "DarkTooth":  dark_tooth
 
 emacsColors = [
   { name: 'White',                             color: '#FEFEFE' }

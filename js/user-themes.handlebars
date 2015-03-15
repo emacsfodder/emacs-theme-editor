@@ -1,0 +1,14 @@
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    My Saved Themes
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    {{#each user_themes}}
+      <li>
+        <a role="button" href="javascript:setTheme(user_themes['{{@key}}'])">{{@key}}</a>
+        <span class="user-theme-removal-icon glyphicon glyphicon-remove" onclick="removeTheme('{{@key}}')"></span>
+      </li>
+    {{/each}}
+  </ul>
+</div>
