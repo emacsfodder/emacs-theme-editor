@@ -92,19 +92,19 @@ master_table =
   background:
     rx: /background-color +\. +"([^"]*)"/
     rx24: /default +\(\(t +\(\(t +\(.*:background +"([^"]*)"/
-    el: ['#frame', 'background-color']
+    el: ['#code-sample', 'background-color']
   border:
     rx: /border-color +\. +"([^"]*)"/
     rx24: /fringe +\(\(t +\(\(t +\(.*:background +"([^"]*)"/
-    el: ['#frame', 'border-color']
+    el: ['#code-sample', 'border-color']
   cursor:
     rx: /cursor-color +\. +"([^"]*)"/
     rx24: /cursor +\(\(t +\(\(t +\(.*:background +"([^"]*)"/
-    el: ['#cursor', 'background-color']
+    el: ['.cursor', 'background-color']
   foreground:
     rx: /foreground-color \. +"([^"]*)"/
     rx24: /default +\(\(t +\(\(t +\(.*:foreground +"([^"]*)"/
-    el: ['#frame', 'color']
+    el: ['#code-sample', 'color']
   modelinefg:
     rx: /mode-line +\(\(t +\(.*:foreground +"([^"]*)"/
     el: ['#modeline', 'color']
@@ -164,7 +164,9 @@ closeThemeBox = ()->
     $('#config br').remove()
     $('#generate').removeAttr 'disabled'
 
-setTheme = (o)->
+setTheme = (theme_json)->
+  return unless theme_json
+  o = JSON.parse theme_json
   _.each _.keys(o), (k)->
     setColor k, o[k]
 
@@ -219,7 +221,28 @@ jQuery.fn.center = ()->
 
 $ ()->
 
-  setTheme dark_theme
+  code_spans =
+    kw: '<span class="keyword">'
+    cm: '<span class="comment">'
+    bi: '<span class="builtin">'
+    ty: '<span class="type">'
+    va: '<span class="variable">'
+    co: '<span class="constant">'
+    st: '<span class="string">'
+    fn: '<span class="function">'
+    rg: '<span class="region">'
+    cu: '<span class="cursor">'
+    sx: '</span>'
+
+  $.get './js/python.handlebars', (file)->
+    template = Handlebars.compile file
+    $('#code-sample').html template code_spans
+  .then ()->
+    setTheme dark_theme
+
+  $.get './js/theme-selector.handlebars', (file)->
+    template = Handlebars.compile file
+    $('#theme-selector').html template themes: themes
 
   $('input.els').spectrum
     clickoutFiresChange: true
@@ -301,48 +324,76 @@ $ ()->
     e.preventDefault()
     closeThemeBox()
 
-light_theme =
-  foreground: "#242121"
-  builtin: "#738aa1"
-  comment: "#7d827d"
-  keyword: "#105163"
-  variable: "#ac8d4b"
-  constant: "#456b48"
-  string: "#4c7685"
-  type: "#659915"
-  function: "#375a0d"
-  region: "#cccccc"
-  border: "#eef0f0"
-  background: "#ffffff"
-  modelinefg: "#ffffff"
-  modelinebg: "#6f8784"
-  cursor: "#000000"
-  prompt: "#7299ff"
+light_theme = """
+{
+  "foreground":  "#242121",
+  "builtin":     "#738aa1",
+  "comment":     "#7d827d",
+  "keyword":     "#105163",
+  "variable":    "#ac8d4b",
+  "constant":    "#456b48",
+  "string":      "#4c7685",
+  "type":        "#659915",
+  "function":    "#375a0d",
+  "region":      "#cccccc",
+  "border":      "#eef0f0",
+  "background":  "#ffffff",
+  "modelinefg":  "#ffffff",
+  "modelinebg":  "#6f8784",
+  "cursor":      "#000000",
+  "prompt":      "#7299ff"
+}
+"""
 
-dark_theme =
-  foreground: '#fdf4c1'
-  builtin:    '#fe8019'
-  comment:    '#7c6f64'
-  keyword:    '#fb4934'
-  variable:   '#83a598'
-  constant:   '#d3869b'
-  string:     '#b8bb26'
-  type:       '#d3869b'
-  function:   '#b8bb26'
-  region:     '#504945'
-  border:     '#282828'
-  background: '#282828'
-  modelinefg: '#282828'
-  modelinebg: '#7c6f64'
-  cursor:     '#fdf4c1'
-  prompt:     '#b8bb26'
+dark_theme = """
+{
+  "foreground": "#fdf4c1",
+  "builtin":    "#fe8019",
+  "comment":    "#7c6f64",
+  "keyword":    "#fb4934",
+  "variable":   "#83a598",
+  "constant":   "#d3869b",
+  "string":     "#b8bb26",
+  "type":       "#d3869b",
+  "function":   "#b8bb26",
+  "region":     "#504945",
+  "border":     "#282828",
+  "background": "#282828",
+  "modelinefg": "#282828",
+  "modelinebg": "#7c6f64",
+  "cursor":     "#fdf4c1",
+  "prompt":     "#b8bb26"
+}
+"""
+
+dark_tooth = """
+{
+  "foreground":"#fdf4c1",
+  "builtin":"#fe8019",
+  "comment":"#7c6f64",
+  "keyword":"#dd6f48",
+  "variable":"#83a598",
+  "constant":"#bbaa97",
+  "string":"#429489",
+  "type":"#66999d",
+  "function":"#a99865",
+  "region":"#504945",
+  "border":"#282828",
+  "background":"#282828",
+  "modelinefg":"#ece09f",
+  "modelinebg":"#1e1c1a",
+  "cursor":"#fdf4c1",
+  "prompt":"#61acbb"
+}
+"""
 
 live_theme = {}
 
-themes = [
-  light_theme
-  dark_theme
-]
+themes =
+  "Dark Theme":  dark_theme
+  "Light Theme": light_theme
+  "Dark tooth":  dark_tooth
+
 
 emacsColors = [
   { name: 'White',                             color: '#FEFEFE' }

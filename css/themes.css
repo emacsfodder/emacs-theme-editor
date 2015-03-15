@@ -47,6 +47,8 @@ pre {
 
 .color-group label {
   display: block;
+  text-transform: lowercase;
+  background-color: rgba(0,0,0,0.07);
   width: 100%;
   padding: 5px;
   float: left;
@@ -54,11 +56,9 @@ pre {
   border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
-.sp-replacer {
-  float: right;
-  margin-top: -30px;
-  display: inline;
+#action-bar {
 }
+
 
 label {
   font-weight: normal;
@@ -92,7 +92,34 @@ label {
   background-color: #0F1411 !important;
 }
 
-#frame {
+#code-sample {
   border-left: 5px solid;
   padding: 0;
+}
+
+.sp-replacer {
+  padding: 0;
+  border: none !important;
+  float: right;
+  margin-top: -26px;
+  display: inline;
+}
+
+.sp-container {
+  border: 1px solid black;
+}
+
+.sp-button-container {
+  margin-top: 6px;
+}
+
+button.sp-cancel {
+    background-image: linear-gradient(#FF5454, #710000);
+    color: white !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    text-decoration: none !important;
+}
+
+button.sp-cancel:hover {
+    text-decoration: none !important;
 }

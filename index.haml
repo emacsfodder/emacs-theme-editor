@@ -1,0 +1,98 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "content-type"}/
+    %meta{:charset => "utf-8"}/
+    %title Emacs Theme Editor
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Oswald", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "./css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "./css/styles.css", :rel => "stylesheet"}/
+    %link{:href => "./css/spectrum.css", :rel => "stylesheet"}/
+    %link{:href => "./css/themes.css", :rel => "stylesheet"}/
+    /[if lt IE 9]
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  %body
+    / Header
+    #top-nav.navbar.navbar-inverse.navbar-static-top
+      .container-fluid
+        .navbar-header
+          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{:href => "#"} Emacs Theme Editor
+      / /container
+    / /Header
+    / Main
+    .container-fluid
+      .row
+        .col-sm-3
+          .panel.panel-default
+            / Left column
+            .panel-heading
+              .form-group
+                %label{:for => "configname"} Theme name
+                %input#configname.form-control{:placeholder => "Theme name", :type => "text"}/
+            .panel-body.color-controls-panel
+              %ul#userMenu.list-unstyled.collapse.in
+                - [{name: "background", id: "rbg",    title: "Background"  },
+                   {name: "foreground", id: "rfg",    title: "Foreground"  },
+                   {name: "keyword",    id: "rkw",    title: "Keywords"    },
+                   {name: "comment",    id: "rcmt",   title: "Comments"    },
+                   {name: "builtin",    id: "rbt",    title: "Builtins"    },
+                   {name: "type",       id: "rtp",    title: "Class/Type"  },
+                   {name: "variable",   id: "rvar",   title: "Variables"   },
+                   {name: "constant",   id: "rconst", title: "Constants"   },
+                   {name: "string",     id: "rstr",   title: "Strings"     },
+                   {name: "function",   id: "rfun",   title: "Functions"   },
+                   {name: "cursor",     id: "rcr",    title: "Cursor"      },
+                   {name: "region",     id: "reg",    title: "Region"      },
+                   {name: "border",     id: "rbd",    title: "Fringe"      },
+                   {name: "modelinebg", id: "modbg",  title: "Modeline bg" },
+                   {name: "modelinefg", id: "modfg",  title: "Modeline fg" },
+                   {name: "prompt",     id: "pmp",    title: "Minibuffer"  },
+                   ].each do |k|
+                  %li
+                    .form-group.color-group
+                      %label{:for => k[:id]} #{k[:title]}
+                      %input.els{:name => k[:name], :id => k[:id], :type => "color" }
+
+                -# %li
+                -#   .form-group.side-label
+                -#     %label{:for => "deftheme"} Emacs 24 deftheme
+                -#     %input#deftheme{:checked => "true", :name => "deftheme", :type => "checkbox", :value => "deftheme"}/
+
+                %li
+                  .side-label
+                    #action-bar.btn-group{:role => "group", "aria-label" => "actions"}
+                      %button#save.btn.btn-default
+                        %span.glyphicon.glyphicon-floppy-save
+                      %button#load.btn.btn-default
+                        %span.glyphicon.glyphicon-floppy-open
+                      %button#import.btn.btn-default
+                        %span.glyphicon.glyphicon-upload
+                %li.hidden
+                  .form-group.side-label
+                    %label{:for => "import_theme"} Import theme
+                    %input#import_theme.btn{:name => "import_theme", :onchange => "importThemeHandler(event)", :type => "file"}/
+        / /Left column
+        .col-sm-9
+          / right panel
+          .row
+            .panel.panel-default
+              .panel-heading
+                #theme-selector
+              .panel-body.code-panel
+                #code-sample
+    / /right panel
+    / /Main
+    %footer.text-center
+      %small Emacs theme editor Licenced under GNU/GPL2
+    / script references
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"}
+    %script{:src => "./js/bootstrap.min.js"}
+    %script{:src => "./js/lodash.js"}
+    %script{:src => "./js/handlebars-v3.0.0.js"}
+    %script{:src => "./js/spectrum.js"}
+    %script{:src => "./js/themes.js"}

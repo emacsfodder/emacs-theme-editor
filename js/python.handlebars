@@ -1,0 +1,50 @@
+<pre>
+
+{{{cm}}}# Python code sample{{{sx}}}
+{{{kw}}}import{{{sx}}} os, re
+{{{kw}}}from{{{sx}}} sys {{{kw}}}import{{{sx}}} {{{bi}}}exit{{{sx}}}
+
+{{{co}}}SOMECONST{{{sx}}} = None
+{{{va}}}somevariable{{{sx}}} = {{{bi}}}min{{{sx}}}({{{bi}}}sum{{{sx}}}(1,2), {{{bi}}}max{{{sx}}}({{{bi}}}range{{{sx}}}(10)))
+
+{{{kw}}}def{{{sx}}} {{{fn}}}some_callable{{{sx}}}(argument1, argument2=False):
+    {{{st}}}""" Doc-string for some_callable function. """{{{sx}}}
+    {{{kw}}}if{{{sx}}} {{{kw}}}not{{{sx}}} argument1:
+        {{{kw}}}return{{{sx}}} {{{co}}}None{{{sx}}}
+    {{{kw}}}try{{{sx}}}:
+        argument1.do_stuff()
+    {{{kw}}}except{{{sx}}} ({{{ty}}}AttributeError{{{sx}}}): {{{cm}}}# some comments{{{sx}}}
+        {{{kw}}}if{{{sx}}} {{{kw}}}not{{{sx}}} can_fail:
+            {{{kw}}}raise{{{sx}}}
+        {{{kw}}}return{{{sx}}} argument1{{{sx}}}
+
+{{{kw}}}class{{{sx}}} {{{ty}}}RegexPattern{{{sx}}}({{{bi}}}object{{{sx}}}):
+    {{{kw}}}def{{{sx}}} {{{fn}}}__init__{{{sx}}}({{{kw}}}self{{{sx}}}, regex, name):
+        {{{kw}}}self{{{sx}}}.v = {{{st}}}"0.2.24"{{{sx}}}
+{{{rg}}}        {{{kw}}}self{{{sx}}}.regex = re.compile(regex)  {{{sx}}}{{{cu}}} {{{sx}}}
+        {{{kw}}}self{{{sx}}}.name = name
+
+    {{{kw}}}def{{{sx}}} {{{fn}}}__repr__{{{sx}}}({{{kw}}}self{{{sx}}}):
+        {{{kw}}}return{{{sx}}} {{{st}}}'string &lt;%s with %s&gt; formatting'{{{sx}}} % ({{{kw}}}self{{{sx}}}.name, {{{kw}}}self{{{sx}}}.regex)
+
+    {{{kw}}}def{{{sx}}} {{{fn}}}version{{{sx}}}({{{kw}}}self{{{sx}}}):
+        {{{kw}}}return{{{sx}}} {{{st}}}'Version: %s'{{{sx}}} % ({{{kw}}}self{{{sx}}}.v)
+
+    {{{kw}}}def{{{sx}}} {{{fn}}}resolve{{{sx}}}({{{kw}}}self{{{sx}}}, path):
+        match = {{{kw}}}self{{{sx}}}.regex.search(path)
+        {{{kw}}}if{{{sx}}} match:
+            {{{cm}}}# Even more comments.
+            # I love writing comments.{{{sx}}}
+            {{{kw}}}if{{{sx}}} kwargs:
+                args = ()
+            {{{kw}}}else{{{sx}}}:
+                args = match.groups()
+            {{{kw}}}return{{{sx}}} args, kwargs
+
+</pre>
+<div id="modeline">
+<pre id="modeline-text">
+--:**-   project.py     Bot 10% L20     (Python)-------------------------
+</pre>
+</div>
+<pre id="prompt"><b>I-search:</b></pre>

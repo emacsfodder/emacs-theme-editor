@@ -1,0 +1,13 @@
+<div class="btn-group" role="group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    Starter Themes
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    {{#each themes}}
+      <li>
+        <a role="button" href="javascript:setTheme(themes['{{@key}}'])">{{@key}}</a>
+      </li>
+    {{/each}}
+  </ul>
+</div>

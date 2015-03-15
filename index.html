@@ -1,237 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <meta charset="utf-8"/>
+    <meta content='text/html; charset=UTF-8' http-equiv='content-type'>
+    <meta charset='utf-8'>
     <title>Emacs Theme Editor</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'/>
-    <link href="./css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="./css/styles.css" rel="stylesheet"/>
-    <link href="./css/spectrum.css" rel="stylesheet"/>
-    <link href="./css/themes.css" rel="stylesheet"/>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='./css/bootstrap.min.css' rel='stylesheet'>
+    <link href='./css/styles.css' rel='stylesheet'>
+    <link href='./css/spectrum.css' rel='stylesheet'>
+    <link href='./css/themes.css' rel='stylesheet'>
     <!--[if lt IE 9]>
-        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
     <!-- Header -->
-    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+    <div class='navbar navbar-inverse navbar-static-top' id='top-nav'>
+      <div class='container-fluid'>
+        <div class='navbar-header'>
+          <button class='navbar-toggle' data-target='.navbar-collapse' data-toggle='collapse' type='button'>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
           </button>
-          <a class="navbar-brand" href="#">Emacs Theme Editor</a>
+          <a class='navbar-brand' href='#'>Emacs Theme Editor</a>
         </div>
-      </div><!-- /container -->
+      </div>
+      <!-- /container -->
     </div>
     <!-- /Header -->
-
     <!-- Main -->
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="panel panel-default"> <!-- Left column -->
-            <div class="panel-heading">
-              <div class="form-group">
-                <label for="configname">Theme name</label>
-                <input class="form-control" id="configname" type="text" placeholder="Theme name"/>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-sm-3'>
+          <div class='panel panel-default'>
+            <!-- Left column -->
+            <div class='panel-heading'>
+              <div class='form-group'>
+                <label for='configname'>Theme name</label>
+                <input class='form-control' id='configname' placeholder='Theme name' type='text'>
               </div>
             </div>
-            <div class="panel-body color-controls-panel">
-              <ul class="list-unstyled collapse in" id="userMenu">
+            <div class='panel-body color-controls-panel'>
+              <ul class='list-unstyled collapse in' id='userMenu'>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rbg">Background</label>
-                    <input type="color" class="els" name="background" id="rbg"/>
+                  <div class='form-group color-group'>
+                    <label for='rbg'>Background</label>
+                    <input class='els' id='rbg' name='background' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rfg">Foreground</label>
-                    <input type="color" class="els" name="foreground" id="rfg"/>
+                  <div class='form-group color-group'>
+                    <label for='rfg'>Foreground</label>
+                    <input class='els' id='rfg' name='foreground' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rkw">Keywords</label>
-                    <input type="color" class="els" name="keyword" id="rkw"/>
+                  <div class='form-group color-group'>
+                    <label for='rkw'>Keywords</label>
+                    <input class='els' id='rkw' name='keyword' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rcmt">Comments</label>
-                    <input type="color" class="els" name="comment" id="rcmt"/>
+                  <div class='form-group color-group'>
+                    <label for='rcmt'>Comments</label>
+                    <input class='els' id='rcmt' name='comment' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rbt">Builtins</label>
-                    <input type="color" class="els" name="builtin" id="rbt"/>
+                  <div class='form-group color-group'>
+                    <label for='rbt'>Builtins</label>
+                    <input class='els' id='rbt' name='builtin' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rtp">Class/Type</label>
-                    <input type="color" class="els" name="type" id="rtp"/>
+                  <div class='form-group color-group'>
+                    <label for='rtp'>Class/Type</label>
+                    <input class='els' id='rtp' name='type' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rvar">Variables</label>
-                    <input type="color" class="els" name="variable" id="rvar"/>
+                  <div class='form-group color-group'>
+                    <label for='rvar'>Variables</label>
+                    <input class='els' id='rvar' name='variable' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rconst">Constants</label>
-                    <input type="color" class="els" name="constant" id="rconst"/>
+                  <div class='form-group color-group'>
+                    <label for='rconst'>Constants</label>
+                    <input class='els' id='rconst' name='constant' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rstr">Strings</label>
-                    <input type="color" class="els" name="string" id="rstr"/>
+                  <div class='form-group color-group'>
+                    <label for='rstr'>Strings</label>
+                    <input class='els' id='rstr' name='string' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rfun">Functions</label>
-                    <input type="color" class="els" name="function" id="rfun"/>
+                  <div class='form-group color-group'>
+                    <label for='rfun'>Functions</label>
+                    <input class='els' id='rfun' name='function' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rcr">Cursor color</label>
-                    <input type="color" class="els" name="cursor" id="rcr"/>
+                  <div class='form-group color-group'>
+                    <label for='rcr'>Cursor</label>
+                    <input class='els' id='rcr' name='cursor' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="reg">Selection bg</label>
-                    <input type="color" class="els" name="region" id="reg"/>
+                  <div class='form-group color-group'>
+                    <label for='reg'>Region</label>
+                    <input class='els' id='reg' name='region' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="rbd">Fringe bg</label>
-                    <input type="color" class="els" name="border" id="rbd"/>
+                  <div class='form-group color-group'>
+                    <label for='rbd'>Fringe</label>
+                    <input class='els' id='rbd' name='border' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="modbg">Modeline bg</label>
-                    <input type="color" class="els" name="modelinebg" id="modbg"/>
+                  <div class='form-group color-group'>
+                    <label for='modbg'>Modeline bg</label>
+                    <input class='els' id='modbg' name='modelinebg' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="modfg">Modeline fg</label>
-                    <input type="color" class="els" name="modelinefg" id="modfg"/>
+                  <div class='form-group color-group'>
+                    <label for='modfg'>Modeline fg</label>
+                    <input class='els' id='modfg' name='modelinefg' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group color-group">
-                    <label for="pmp">Minibuffer fg</label>
-                    <input type="color" class="els" name="prompt" id="pmp"/>
+                  <div class='form-group color-group'>
+                    <label for='pmp'>Minibuffer</label>
+                    <input class='els' id='pmp' name='prompt' type='color'>
                   </div>
                 </li>
                 <li>
-                  <div class="form-group side-label">
-                    <label for="deftheme">Emacs 24 deftheme</label>
-                    <input type="checkbox" checked="true" name="deftheme" value="deftheme" id="deftheme"/>
+                  <div class='side-label'>
+                    <div aria-label='actions' class='btn-group' id='action-bar' role='group'>
+                      <button class='btn btn-default' id='save'>
+                        <span class='glyphicon glyphicon-floppy-save'></span>
+                      </button>
+                      <button class='btn btn-default' id='load'>
+                        <span class='glyphicon glyphicon-floppy-open'></span>
+                      </button>
+                      <button class='btn btn-default' id='import'>
+                        <span class='glyphicon glyphicon-upload'></span>
+                      </button>
+                    </div>
                   </div>
                 </li>
-                <li>
-                  <div class="form-group side-label">
-                    <button class="btn btn-primary" style="width: 100%;" id="generate">Generate</button>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-group side-label">
-                    <label for="import_theme">Import theme</label>
-                    <input class="btn" type="file" name="import_theme" id="import_theme" onchange="importThemeHandler(event)"/>
+                <li class='hidden'>
+                  <div class='form-group side-label'>
+                    <label for='import_theme'>Import theme</label>
+                    <input class='btn' id='import_theme' name='import_theme' onchange='importThemeHandler(event)' type='file'>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
-        </div><!-- /Left column -->
-        <div class="col-sm-9" > <!-- right panel -->
-          <div class="row">
-            <div id="desktop" class="panel panel-default">
-              <div class="panel-heading">
-                <span>Base Theme</span>
-                <label class="radio-inline">
-                  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" onchange="setTheme(themes[this.value])" checked="yes" value="1"/> Dark
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" onchange="setTheme(themes[this.value])" value="0"/> Light
-                </label>           </div>
-              <div class="panel-body code-panel">
-                <div id="frame">
-<!-- Do not play with this formatting  -->
-<pre><span class="keyword">import</span> os, re
-<span class="keyword">from</span> sys <span class="keyword">import</span> <span class="builtin">exit</span>
-
-<span class="constant">SOMECONST</span> = None
-<span class="variable">somevariable</span> = <span class="builtin">min</span>(<span class="builtin">sum</span>(1,2), <span class="builtin">max</span>(<span class="builtin">range</span>(10)))
-
-<span class="keyword">def</span> <span class="function">some_callable</span>(argument1, argument2=False):
-    <span class="string">""" Doc-string for some_callable function. """</span>
-    <span class="keyword">if</span> <span class="keyword">not</span> argument1:
-        <span class="keyword">return</span> <span class="constant">None</span>
-    <span class="keyword">try</span>:
-        argument1.do_stuff()
-    <span class="keyword">except</span> (<span class="type">AttributeError</span>): <span class="comment"># some comments</span>
-        <span class="keyword">if</span> <span class="keyword">not</span> can_fail:
-            <span class="keyword">raise</span>
-<span class="region">    <span class="keyword">return</span> argument1</span><span id="cursor"> </span>
-
-
-<span class="keyword">class</span> <span class="type">RegexPattern</span>(<span class="builtin">object</span>):
-    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="keyword">self</span>, regex, name):
-        <span class="keyword">self</span>.regex = re.compile(regex)
-        <span class="keyword">self</span>.name = name
-
-    <span class="keyword">def</span> <span class="function">__repr__</span>(<span class="keyword">self</span>):
-        <span class="keyword">return</span> <span class="string">'string &lt;%s with %s&gt; formatting'</span> % (<span class="keyword">self</span>.name, <span class="keyword">self</span>.regex)
-
-    <span class="keyword">def</span> <span class="function">resolve</span>(<span class="keyword">self</span>, path):
-        match = <span class="keyword">self</span>.regex.search(path)
-        <span class="keyword">if</span> match:
-            <span class="comment"># Even more comments.
-            # I love writing comments.</span>
-            <span class="keyword">if</span> kwargs:
-                args = ()
-            <span class="keyword">else</span>:
-                args = match.groups()
-            <span class="keyword">return</span> args, kwargs
-</pre>
-<!-- end code sample formatting -->
-              <div id="modeline">
-                <pre id="modeline-text">--:**-   project.py     Bot 10% L20     (Python)-------------------------</pre>
+        </div>
+        <!-- /Left column -->
+        <div class='col-sm-9'>
+          <!-- right panel -->
+          <div class='row'>
+            <div class='panel panel-default'>
+              <div class='panel-heading'>
+                <div id='theme-selector'></div>
               </div>
-            <pre id="prompt"><B>I-search:</B></pre>
+              <div class='panel-body code-panel'>
+                <div id='code-sample'></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div><!--/right panel-->
-</div>
-<!-- /Main -->
-
-<footer class="text-center"><small>Emacs theme editor Licenced under GNU/GPL2</small></footer>
-<!-- script references -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
-<script src="./js/scripts.js"></script>
-<script src="./js/lodash.js"></script>
-<script src="./js/spectrum.js"></script>
-<script src="./js/themes.js"></script>
-</body>
+    <!-- /right panel -->
+    <!-- /Main -->
+    <footer class='text-center'>
+      <small>Emacs theme editor Licenced under GNU/GPL2</small>
+    </footer>
+    <!-- script references -->
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
+    <script src='./js/bootstrap.min.js'></script>
+    <script src='./js/lodash.js'></script>
+    <script src='./js/handlebars-v3.0.0.js'></script>
+    <script src='./js/spectrum.js'></script>
+    <script src='./js/themes.js'></script>
+  </body>
 </html>

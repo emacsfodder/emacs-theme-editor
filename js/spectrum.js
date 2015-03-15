@@ -79,7 +79,6 @@
     replaceInput = [
         "<div class='sp-replacer'>",
             "<div class='sp-preview'><div class='sp-preview-inner'></div></div>",
-            "<div class='sp-dd'>&#9660;</div>",
         "</div>"
     ].join(''),
     markup = (function () {
@@ -126,8 +125,8 @@
                     "</div>",
                     "<div class='sp-initial sp-thumb sp-cf'></div>",
                     "<div class='sp-button-container sp-cf'>",
-                        "<a class='sp-cancel' href='#'></a>",
-                        "<button type='button' class='sp-choose'></button>",
+                        "<button type='button' class='sp-choose'></button> ",
+                        "<button type='button' class='sp-cancel'></button>",
                     "</div>",
                 "</div>",
             "</div>"
