@@ -41,13 +41,13 @@ $ ()->
 
   updateUserThemes() if _.keys(localStorage).length > 0
 
-  $('#generate').click ()-> themeGenerator()
+  # $(document).keydown (e)->
+  #   if e.keyCode == 27
+  #     e.preventDefault()
+  #     closeThemeBox()
 
-  $(document).keydown (e)->
-    if e.keyCode == 27
-      e.preventDefault()
-      closeThemeBox()
+  # $(document).on 'click', '#close', (e)->
+  #   e.preventDefault()
+  #   closeThemeBox()
 
-  $(document).on 'click', '#close', (e)->
-    e.preventDefault()
-    closeThemeBox()
+  $(document).on 'click', '#generate', themeGenerator

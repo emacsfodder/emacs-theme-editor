@@ -13,11 +13,11 @@ generateColorTheme = (name)->
   abstractGenerator name, './js/color-theme.handlebars', App.live_theme
 
 themeGenerator = ->
-  $('#generate').attr 'disabled', 'disabled'
-  $('#generate').blur()
+  # $('#generate').attr 'disabled', 'disabled'
+  # $('#generate').blur()
   name = $('#configname').val()
   unless name
-    name = prompt "Save theme", "untitled"
+    name = prompt "Generate theme", "untitled"
     $('#configname').val(name)
 
   deftheme = $('#deftheme')[0].checked
@@ -30,6 +30,9 @@ themeGenerator = ->
   generator(name).then (generated)->
     $.get template, (file)->
       compiled = Handlebars.compile file
-      c = compiled generated: generated, name: name
+      ctx =
+        generated: generated
+        name: name
+      c = compiled ctx
       $('#config').html c
       $('#config-panel').show()

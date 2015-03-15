@@ -44,23 +44,22 @@ generateColorTheme = function(name) {
 
 themeGenerator = function() {
   var deftheme, generator, name, ref, template;
-  $('#generate').attr('disabled', 'disabled');
-  $('#generate').blur();
   name = $('#configname').val();
   if (!name) {
-    name = prompt("Save theme", "untitled");
+    name = prompt("Generate theme", "untitled");
     $('#configname').val(name);
   }
   deftheme = $('#deftheme')[0].checked;
   ref = deftheme ? ['./js/deftheme-modal.handlebars', generateDeftheme] : ['./js/color-theme-modal.handlebars', generateColorTheme], template = ref[0], generator = ref[1];
   return generator(name).then(function(generated) {
     return $.get(template, function(file) {
-      var c, compiled;
+      var c, compiled, ctx;
       compiled = Handlebars.compile(file);
-      c = compiled({
+      ctx = {
         generated: generated,
         name: name
-      });
+      };
+      c = compiled(ctx);
       $('#config').html(c);
       return $('#config-panel').show();
     });
@@ -297,19 +296,7 @@ $(function() {
   if (_.keys(localStorage).length > 0) {
     updateUserThemes();
   }
-  $('#generate').click(function() {
-    return themeGenerator();
-  });
-  $(document).keydown(function(e) {
-    if (e.keyCode === 27) {
-      e.preventDefault();
-      return closeThemeBox();
-    }
-  });
-  return $(document).on('click', '#close', function(e) {
-    e.preventDefault();
-    return closeThemeBox();
-  });
+  return $(document).on('click', '#generate', themeGenerator);
 });
 
 light_theme = "{\n  \"foreground\":  \"#242121\",\n  \"builtin\":     \"#738aa1\",\n  \"comment\":     \"#7d827d\",\n  \"keyword\":     \"#105163\",\n  \"variable\":    \"#ac8d4b\",\n  \"constant\":    \"#456b48\",\n  \"string\":      \"#4c7685\",\n  \"type\":        \"#659915\",\n  \"function\":    \"#375a0d\",\n  \"region\":      \"#cccccc\",\n  \"border\":      \"#eef0f0\",\n  \"background\":  \"#ffffff\",\n  \"modelinefg\":  \"#ffffff\",\n  \"modelinebg\":  \"#6f8784\",\n  \"cursor\":      \"#000000\",\n  \"prompt\":      \"#7299ff\"\n}";
