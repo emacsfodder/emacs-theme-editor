@@ -6,8 +6,9 @@
   <ul class="dropdown-menu" role="menu">
     {{#each user_themes}}
       <li>
-        <a role="button" href="javascript:setTheme(user_themes['{{@key}}'])">{{@key}}</a>
-        <span class="user-theme-removal-icon glyphicon glyphicon-remove" onclick="removeTheme('{{@key}}')"></span>
+        <a role="button" href="javascript:setTheme(user_themes['{{@key}}'], '{{@key}}'.toLowerCase())">{{@key}}
+          <span class="user-theme-removal-icon glyphicon glyphicon-remove-circle" onclick="removeTheme('{{@key}}')"></span>
+        </a>
       </li>
     {{/each}}
   </ul>

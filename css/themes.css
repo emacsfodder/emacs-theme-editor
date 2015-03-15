@@ -101,12 +101,22 @@ label {
   padding: 0;
   border: none !important;
   float: right;
-  margin-top: -26px;
+  margin-top: -28px;
   display: inline;
 }
 
+.sp-preview {
+  width: 40px;
+  height: 23px;
+  border-radius: 23px;
+  border: none;
+}
+.sp-preview-inner {
+  border-radius: 23px;
+  border: 1px solid rgba(128,128,128,0.5);
+}
+
 .sp-container {
-  border: 1px solid black;
 }
 
 .sp-button-container {
@@ -125,8 +135,19 @@ button.sp-cancel:hover {
 }
 
 .user-theme-removal-icon {
-  top: -23px;
-  font-size: 11px;
+  top: 4px;
+  right: -5px;
   color: darkred;
-  right: -137px;
+  float: right;
+  cursor: arrow;
+}
+
+#user-themes li {
+}
+
+#config pre {
+  background-color: rgba(0,0,0,0.1);
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  padding: 8px;
 }
