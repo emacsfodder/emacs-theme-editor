@@ -7,7 +7,6 @@ App = App || {}
 #
 # The el keys contain the css ids / classes, and the property names
 # to color. (using the css convention)
-#
 
 App.code_spans =
   kw: '<span class="keyword">'
@@ -28,13 +27,13 @@ App.master_table =
     title: "Background"
     rx: /background-color +\. +"([^"]*)"/
     rx24: /default +\(\(t +\(\(t +\(.*:background +"([^"]*)"/
-    el: ['#code-sample', 'background-color']
+    el: ['.default', 'background-color']
   foreground:
     id: "rfg"
     title: "Foreground"
     rx: /foreground-color \. +"([^"]*)"/
     rx24: /default +\(\(t +\(\(t +\(.*:foreground +"([^"]*)"/
-    el: ['#code-sample', 'color']
+    el: ['.default', 'color']
   keyword:
     id: "rkw"
     title: "Keywords"
@@ -91,22 +90,22 @@ App.master_table =
     title: "Fringe"
     rx: /border-color +\. +"([^"]*)"/
     rx24: /fringe +\(\(t +\(\(t +\(.*:background +"([^"]*)"/
-    el: ['#code-sample', 'border-color']
+    el: ['.fringe', 'border-color']
   modelinebg:
     id: "modbg"
     title: "Modeline bg"
     rx: /mode-line +\(\(t +\(.*:background +"([^"]*)"/
-    el: ['#modeline', 'background-color']
+    el: ['.modeline', 'background-color']
   modelinefg:
     id: "modfg"
     title: "Modeline fg"
     rx: /mode-line +\(\(t +\(.*:foreground +"([^"]*)"/
-    el: ['#modeline', 'color']
+    el: ['.modeline', 'color']
   prompt:
     id: "pmp"
     title: "Minibuffer"
     rx: /minibuffer-prompt +\(\(t +\(.*:foreground +"([^"]*)"/
-    el: ['#prompt', 'color']
+    el: ['.prompt', 'color']
 
 getFaceList = (t)->
   _.keys(t).map (k)->

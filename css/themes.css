@@ -64,25 +64,25 @@ label {
   font-weight: normal;
 }
 
-#modeline {
+.modeline {
   padding: 1px 0 0 0;
   margin: 0 0 0 -5px;
 }
 
-#modeline-text {
+.modeline-text {
   margin: 0;
   overflow: hidden;
   white-space: nowrap;
 }
 
-#prompt {
+.prompt {
   padding: 3px 0px 2px 5px;
   margin: 0 0 0 -5px;
   border: none;
 }
 
 .navbar-brand {
-  font-size: 23pt;
+  font-size: 20pt;
   text-transform: uppercase;
   font-family: 'Oswald';
   color: white !important;
