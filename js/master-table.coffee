@@ -18,6 +18,7 @@ App.code_spans =
   st: '<span class="string">'
   fn: '<span class="function">'
   rg: '<span class="region">'
+  ss: '<span class="secondary-selection">'
   cu: '<span class="cursor">'
   sx: '</span>'
 
@@ -85,6 +86,11 @@ App.master_table =
     title: "Region"
     rx: /region +\(\(t +\(.*:background +"([^"]*)"/
     el: ['.region', 'background-color']
+  secondary:
+    id: "rss"
+    title: "Secondary Selection"
+    rx: /secondary-selection +\(\(t +\(.*:background +"([^"]*)"/
+    el: ['.secondary-selection', 'background-color']
   border:
     id: "rbd"
     title: "Fringe"

@@ -78,6 +78,7 @@ App.code_spans = {
   st: '<span class="string">',
   fn: '<span class="function">',
   rg: '<span class="region">',
+  ss: '<span class="secondary-selection">',
   cu: '<span class="cursor">',
   sx: '</span>'
 };
@@ -157,6 +158,12 @@ App.master_table = {
     title: "Region",
     rx: /region +\(\(t +\(.*:background +"([^"]*)"/,
     el: ['.region', 'background-color']
+  },
+  secondary: {
+    id: "rss",
+    title: "Secondary Selection",
+    rx: /secondary-selection +\(\(t +\(.*:background +"([^"]*)"/,
+    el: ['.secondary-selection', 'background-color']
   },
   border: {
     id: "rbd",
@@ -348,11 +355,11 @@ $(function() {
   return $(document).on('click', '#generate', themeGenerator);
 });
 
-light_theme = "{\n  \"foreground\":  \"#242121\",\n  \"builtin\":     \"#738aa1\",\n  \"comment\":     \"#7d827d\",\n  \"keyword\":     \"#105163\",\n  \"variable\":    \"#ac8d4b\",\n  \"constant\":    \"#456b48\",\n  \"string\":      \"#4c7685\",\n  \"type\":        \"#659915\",\n  \"function\":    \"#375a0d\",\n  \"region\":      \"#cccccc\",\n  \"border\":      \"#eef0f0\",\n  \"background\":  \"#ffffff\",\n  \"modelinefg\":  \"#ffffff\",\n  \"modelinebg\":  \"#6f8784\",\n  \"cursor\":      \"#000000\",\n  \"prompt\":      \"#7299ff\"\n}";
+light_theme = "{\n  \"foreground\":  \"#242121\",\n  \"builtin\":     \"#738aa1\",\n  \"comment\":     \"#7d827d\",\n  \"keyword\":     \"#105163\",\n  \"variable\":    \"#ac8d4b\",\n  \"constant\":    \"#456b48\",\n  \"string\":      \"#4c7685\",\n  \"type\":        \"#659915\",\n  \"function\":    \"#375a0d\",\n  \"region\":      \"#cccccc\",\n  \"secondary\":   \"#cddbec\",\n  \"border\":      \"#eef0f0\",\n  \"background\":  \"#ffffff\",\n  \"modelinefg\":  \"#ffffff\",\n  \"modelinebg\":  \"#6f8784\",\n  \"cursor\":      \"#000000\",\n  \"prompt\":      \"#7299ff\"\n}";
 
-dark_theme = "{\n  \"foreground\": \"#fdf4c1\",\n  \"builtin\":    \"#fe8019\",\n  \"comment\":    \"#7c6f64\",\n  \"keyword\":    \"#fb4934\",\n  \"variable\":   \"#83a598\",\n  \"constant\":   \"#d3869b\",\n  \"string\":     \"#b8bb26\",\n  \"type\":       \"#d3869b\",\n  \"function\":   \"#b8bb26\",\n  \"region\":     \"#504945\",\n  \"border\":     \"#282828\",\n  \"background\": \"#282828\",\n  \"modelinefg\": \"#282828\",\n  \"modelinebg\": \"#7c6f64\",\n  \"cursor\":     \"#fdf4c1\",\n  \"prompt\":     \"#b8bb26\"\n}";
+dark_theme = "{\n  \"foreground\": \"#fdf4c1\",\n  \"builtin\":    \"#fe8019\",\n  \"comment\":    \"#7c6f64\",\n  \"keyword\":    \"#fb4934\",\n  \"variable\":   \"#83a598\",\n  \"constant\":   \"#d3869b\",\n  \"string\":     \"#b8bb26\",\n  \"type\":       \"#d3869b\",\n  \"function\":   \"#b8bb26\",\n  \"region\":     \"#504945\",\n  \"secondary\":  \"#3e3834\",\n  \"border\":     \"#282828\",\n  \"background\": \"#282828\",\n  \"modelinefg\": \"#282828\",\n  \"modelinebg\": \"#7c6f64\",\n  \"cursor\":     \"#fdf4c1\",\n  \"prompt\":     \"#b8bb26\"\n}";
 
-dark_tooth = "{\n  \"foreground\":\"#fdf4c1\",\n  \"builtin\":\"#fe8019\",\n  \"comment\":\"#7c6f64\",\n  \"keyword\":\"#dd6f48\",\n  \"variable\":\"#83a598\",\n  \"constant\":\"#bbaa97\",\n  \"string\":\"#429489\",\n  \"type\":\"#66999d\",\n  \"function\":\"#a99865\",\n  \"region\":\"#504945\",\n  \"border\":\"#282828\",\n  \"background\":\"#282828\",\n  \"modelinefg\":\"#ece09f\",\n  \"modelinebg\":\"#1e1c1a\",\n  \"cursor\":\"#fdf4c1\",\n  \"prompt\":\"#61acbb\"\n}";
+dark_tooth = "{\n  \"foreground\": \"#fdf4c1\",\n  \"builtin\":    \"#fe8019\",\n  \"comment\":    \"#7c6f64\",\n  \"keyword\":    \"#dd6f48\",\n  \"variable\":   \"#83a598\",\n  \"constant\":   \"#bbaa97\",\n  \"string\":     \"#429489\",\n  \"type\":       \"#66999d\",\n  \"function\":   \"#a99865\",\n  \"region\":     \"#504945\",\n  \"secondary\":  \"#3e3834\",\n  \"border\":     \"#282828\",\n  \"background\": \"#282828\",\n  \"modelinefg\": \"#ece09f\",\n  \"modelinebg\": \"#1e1c1a\",\n  \"cursor\":     \"#fdf4c1\",\n  \"prompt\":     \"#61acbb\"\n}";
 
 themes = {
   "Dark": dark_theme,

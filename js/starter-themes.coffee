@@ -10,6 +10,7 @@ light_theme = """
   "type":        "#659915",
   "function":    "#375a0d",
   "region":      "#cccccc",
+  "secondary":   "#cddbec",
   "border":      "#eef0f0",
   "background":  "#ffffff",
   "modelinefg":  "#ffffff",
@@ -31,6 +32,7 @@ dark_theme = """
   "type":       "#d3869b",
   "function":   "#b8bb26",
   "region":     "#504945",
+  "secondary":  "#3e3834",
   "border":     "#282828",
   "background": "#282828",
   "modelinefg": "#282828",
@@ -42,22 +44,23 @@ dark_theme = """
 
 dark_tooth = """
 {
-  "foreground":"#fdf4c1",
-  "builtin":"#fe8019",
-  "comment":"#7c6f64",
-  "keyword":"#dd6f48",
-  "variable":"#83a598",
-  "constant":"#bbaa97",
-  "string":"#429489",
-  "type":"#66999d",
-  "function":"#a99865",
-  "region":"#504945",
-  "border":"#282828",
-  "background":"#282828",
-  "modelinefg":"#ece09f",
-  "modelinebg":"#1e1c1a",
-  "cursor":"#fdf4c1",
-  "prompt":"#61acbb"
+  "foreground": "#fdf4c1",
+  "builtin":    "#fe8019",
+  "comment":    "#7c6f64",
+  "keyword":    "#dd6f48",
+  "variable":   "#83a598",
+  "constant":   "#bbaa97",
+  "string":     "#429489",
+  "type":       "#66999d",
+  "function":   "#a99865",
+  "region":     "#504945",
+  "secondary":  "#3e3834",
+  "border":     "#282828",
+  "background": "#282828",
+  "modelinefg": "#ece09f",
+  "modelinebg": "#1e1c1a",
+  "cursor":     "#fdf4c1",
+  "prompt":     "#61acbb"
 }
 """
 
@@ -65,4 +68,3 @@ themes =
   "Dark":  dark_theme
   "Light": light_theme
   "DarkTooth":  dark_tooth
-
