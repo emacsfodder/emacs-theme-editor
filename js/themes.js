@@ -35,22 +35,22 @@ abstractGenerator = function(name, template, ctx) {
 };
 
 generateDeftheme = function(name) {
-  return abstractGenerator(name, './js/deftheme.handlebars', App.live_theme);
+  return abstractGenerator(name, './js/templates/deftheme.handlebars', App.live_theme);
 };
 
 generateColorTheme = function(name) {
-  return abstractGenerator(name, './js/color-theme.handlebars', App.live_theme);
+  return abstractGenerator(name, './js/templates/color-theme.handlebars', App.live_theme);
 };
 
 themeGenerator = function() {
   var deftheme, generator, name, ref, template;
-  name = $('#configname').val();
+  name = $('#theme-name').val();
   if (!name) {
     name = prompt("Generate theme", "untitled");
-    $('#configname').val(name);
+    $('#theme-name').val(name);
   }
   deftheme = $('#deftheme')[0].checked;
-  ref = deftheme ? ['./js/deftheme-modal.handlebars', generateDeftheme] : ['./js/color-theme-modal.handlebars', generateColorTheme], template = ref[0], generator = ref[1];
+  ref = deftheme ? ['./js/templates/deftheme-panel.handlebars', generateDeftheme] : ['./js/templates/color-theme-panel.handlebars', generateColorTheme], template = ref[0], generator = ref[1];
   return generator(name).then(function(generated) {
     return $.get(template, function(file) {
       var c, compiled, ctx;
@@ -60,8 +60,8 @@ themeGenerator = function() {
         name: name
       };
       c = compiled(ctx);
-      $('#config').html(c);
-      return $('#config-panel').show();
+      $('#theme-generated').html(c);
+      return smoothScroll.animateScroll(null, '#theme-generated');
     });
   });
 };
@@ -83,7 +83,7 @@ App.code_spans = {
   sx: '</span>'
 };
 
-App.master_table = {
+App.face_table = {
   background: {
     id: "rbg",
     title: "Background",
@@ -207,19 +207,19 @@ App = App || {};
 App.live_theme = {};
 
 masterKeys = function() {
-  return _.keys(App.master_table);
+  return _.keys(App.face_table);
 };
 
 elp = function(k) {
-  return App.master_table[k].el[1];
+  return App.face_table[k].el[1];
 };
 
 getColor = function(k) {
-  return tinycolor($(App.master_table[k].el[0]).css(elp(k))).toHexString();
+  return tinycolor($(App.face_table[k].el[0]).css(elp(k))).toHexString();
 };
 
 setColor = function(k, col) {
-  $(App.master_table[k].el[0]).css(elp(k), col);
+  $(App.face_table[k].el[0]).css(elp(k), col);
   $("input[name=" + k + "]").spectrum("set", col);
   $("input[name=" + k + "]").val(col);
   return App.live_theme[k] = col;
@@ -238,7 +238,7 @@ setTheme = function(theme_json, name) {
     return setColor(k, o[k]);
   });
   if (name) {
-    return $('#configname').val(name);
+    return $('#theme-name').val(name);
   }
 };
 
@@ -255,7 +255,7 @@ updateUserThemes = function() {
     }
   });
   if (_.keys(user_themes).length > 0) {
-    return $.get('./js/user-themes.handlebars', function(file) {
+    return $.get('./js/templates/user-themes.handlebars', function(file) {
       var template;
       template = Handlebars.compile(file);
       return $('#user-themes').html(template({
@@ -267,14 +267,14 @@ updateUserThemes = function() {
 
 saveToLocalStorage = function() {
   var name;
-  name = $('#configname').val();
+  name = $('#theme-name').val();
   if (!name) {
     name = prompt("Save theme", "untitled");
   }
   if (!name) {
     return;
   }
-  $('#configname').val(name);
+  $('#theme-name').val(name);
   if (localStorage.getItem(name)) {
     this.undo_theme = localStorage.getItem(name);
   }
@@ -311,23 +311,29 @@ undo = function() {
 };
 
 closeThemeBox = function() {
-  $('#config').hide();
-  $('#config .msg').remove();
+  $('#theme-generated').hide();
+  $('#theme-generated .msg').remove();
   return $('#generate').removeAttr('disabled');
 };
 
 $(function() {
-  $.get('./js/theme-selector.handlebars', function(file) {
+  smoothScroll.init({
+    speed: 500,
+    easing: 'easeInCubic',
+    updateURL: false,
+    offset: 0
+  });
+  $.get('./js/templates/theme-selector.handlebars', function(file) {
     var template;
     template = Handlebars.compile(file);
     return $('#theme-selector').html(template({
       themes: themes
     }));
   });
-  $.get('./js/face-list.handlebars', function(file) {
+  $.get('./js/templates/face-list.handlebars', function(file) {
     var list, template;
     template = Handlebars.compile(file);
-    list = getFaceList(App.master_table);
+    list = getFaceList(App.face_table);
     $('#face-list').html(template(list));
     return $('input.els').spectrum({
       clickoutFiresChange: true,
@@ -341,7 +347,7 @@ $(function() {
       }
     });
   }).then(function() {
-    return $.get('./js/python.handlebars', function(file) {
+    return $.get('./js/templates/python.handlebars', function(file) {
       var template;
       template = Handlebars.compile(file);
       return $('#code-sample').html(template(App.code_spans));
@@ -396,14 +402,14 @@ importThemeHandler = function(e) {
 loadConfig = function(conf) {
   var name, o;
   name = (conf.match(/defun ([^ ]*)/) || conf.match(/deftheme ([^ ]*)/))[1];
-  $('#configname').val(name);
+  $('#theme-name').val(name);
   o = {};
-  _.each(_.keys(App.master_table), function(k) {
+  _.each(_.keys(App.face_table), function(k) {
     var r;
-    if ($('#deftheme')[0].checked && App.master_table[k].rx24) {
-      r = App.master_table[k].rx24;
+    if ($('#deftheme')[0].checked && App.face_table[k].rx24) {
+      r = App.face_table[k].rx24;
     } else {
-      r = App.master_table[k].rx;
+      r = App.face_table[k].rx;
     }
     return o[k] = fromEmacsColor(conf.match(r));
   });

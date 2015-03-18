@@ -5,8 +5,8 @@
     %meta{:charset => "utf-8"}/
     %title Emacs Theme Editor
     %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}/
-    %link{:href => "http://fonts.googleapis.com/css?family=Oswald", :rel => "stylesheet", :type => "text/css"}/
-    %link{:href => "./css/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "//fonts.googleapis.com/css?family=Oswald", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css", :rel => "stylesheet"}/
     %link{:href => "./css/styles.css", :rel => "stylesheet"}/
     %link{:href => "./css/github.css", :rel => "stylesheet"}/
     %link{:href => "./css/spectrum.css", :rel => "stylesheet"}/
@@ -33,8 +33,8 @@
             / Left column
             .panel-heading
               .form-group
-                %label{:for => "configname"} Theme name
-                %input#configname.form-control{:placeholder => "Theme name", :type => "text"}/
+                %label{:for => "theme-name"} Theme name
+                %input#theme-name.form-control{:placeholder => "Theme name", :type => "text"}/
             .panel-body.color-controls-panel
               %ul#face-list.list-unstyled.collapse.in
               %ul.list-unstyled.collapse.in
@@ -69,17 +69,16 @@
               .panel-body.code-panel
                 #code-sample.fringe.default
           / /right panel
-      #config.row
+      #theme-generated.row
     / /Main
     %footer.text-center
-      %small Emacs theme editor Licenced under GNU/GPL2
-      %br/
-      %small Better believe I need Javascript enabled!
+      %small Emacs theme editor Licenced under GNU/GPL2 - Jason Milkins 2015(c) - Javascript / modern browser required.
     / script references
     %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"}
-    %script{:src => "./js/bootstrap.min.js"}
-    %script{:src => "./js/highlight.pack.js"}
-    %script{:src => "./js/lodash.js"}
-    %script{:src => "./js/handlebars-v3.0.0.js"}
-    %script{:src => "./js/spectrum.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"}
+    %script{:src => "//cdn.rawgit.com/cferdinandi/smooth-scroll/master/dist/js/smooth-scroll.min.js"}
+    %script{:src => "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"}
+    %script{:src => "./js/lib/spectrum.js"}
     %script{:src => "./js/themes.js"}

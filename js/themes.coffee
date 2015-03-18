@@ -1,18 +1,25 @@
 # Emacs Theme Editor 2015
 closeThemeBox = ()->
-  $('#config').hide()
-  $('#config .msg').remove()
+  $('#theme-generated').hide()
+  $('#theme-generated .msg').remove()
   $('#generate').removeAttr 'disabled'
 
+# Initialize
 $ ()->
 
-  $.get './js/theme-selector.handlebars', (file)->
+  smoothScroll.init
+    speed: 500
+    easing: 'easeInCubic'
+    updateURL: false
+    offset: 0
+
+  $.get './js/templates/theme-selector.handlebars', (file)->
     template = Handlebars.compile file
     $('#theme-selector').html template themes: themes
 
-  $.get './js/face-list.handlebars', (file)->
+  $.get './js/templates/face-list.handlebars', (file)->
     template = Handlebars.compile file
-    list = getFaceList App.master_table
+    list = getFaceList App.face_table
     $('#face-list').html template list
 
     $('input.els').spectrum
@@ -26,7 +33,7 @@ $ ()->
         setColor this.name, color.toHexString()
 
   .then ->
-    $.get './js/python.handlebars', (file)->
+    $.get './js/templates/python.handlebars', (file)->
       template = Handlebars.compile file
       $('#code-sample').html template App.code_spans
     .then ->

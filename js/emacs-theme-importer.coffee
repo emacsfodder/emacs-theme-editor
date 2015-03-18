@@ -14,17 +14,18 @@ importThemeHandler = (e)->
   reader.onload = (e)->
     console.log "Loaded", e
     console.log "Text:", reader.result
+    # TODO: ... run through loadConfig
   reader.readAsText e.target.files[0]
 
 loadConfig = (conf)->
   name = (conf.match(/defun ([^ ]*)/) or conf.match(/deftheme ([^ ]*)/))[1]
-  $('#configname').val(name)
+  $('#theme-name').val(name)
   o = {}
-  _.each _.keys(App.master_table), (k)->
-    if $('#deftheme')[0].checked && App.master_table[k].rx24
-      r = App.master_table[k].rx24
+  _.each _.keys(App.face_table), (k)->
+    if $('#deftheme')[0].checked && App.face_table[k].rx24
+      r = App.face_table[k].rx24
     else
-      r = App.master_table[k].rx
+      r = App.face_table[k].rx
     o[k] = fromEmacsColor conf.match(r)
 
   setTheme o

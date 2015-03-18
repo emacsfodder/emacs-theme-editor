@@ -6,26 +6,30 @@ abstractGenerator = (name, template, ctx)->
 
 # for GNU Emacs 24+
 generateDeftheme = (name)->
-  abstractGenerator name, './js/deftheme.handlebars', App.live_theme
+  abstractGenerator name,
+  './js/templates/deftheme.handlebars',
+  App.live_theme
 
 # for color-theme.el package
 generateColorTheme = (name)->
-  abstractGenerator name, './js/color-theme.handlebars', App.live_theme
+  abstractGenerator name,
+  './js/templates/color-theme.handlebars',
+  App.live_theme
 
 themeGenerator = ->
   # $('#generate').attr 'disabled', 'disabled'
   # $('#generate').blur()
-  name = $('#configname').val()
+  name = $('#theme-name').val()
   unless name
     name = prompt "Generate theme", "untitled"
-    $('#configname').val(name)
+    $('#theme-name').val(name)
 
   deftheme = $('#deftheme')[0].checked
 
   [template, generator] = if deftheme
-    ['./js/deftheme-modal.handlebars', generateDeftheme]
+    ['./js/templates/deftheme-panel.handlebars', generateDeftheme]
   else
-    ['./js/color-theme-modal.handlebars', generateColorTheme]
+    ['./js/templates/color-theme-panel.handlebars', generateColorTheme]
 
   generator(name).then (generated)->
     $.get template, (file)->
@@ -34,5 +38,5 @@ themeGenerator = ->
         generated: generated
         name: name
       c = compiled ctx
-      $('#config').html c
-      $('#config-panel').show()
+      $('#theme-generated').html c
+      smoothScroll.animateScroll null, '#theme-generated'

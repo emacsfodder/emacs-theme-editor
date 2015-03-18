@@ -22,7 +22,7 @@ App.code_spans =
   cu: '<span class="cursor">'
   sx: '</span>'
 
-App.master_table =
+App.face_table =
   background:
     id: "rbg"
     title: "Background"

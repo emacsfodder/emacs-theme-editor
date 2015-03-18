@@ -2,7 +2,7 @@
 cat \
   js/string.undent.coffee\
   js/theme-generators.coffee\
-  js/master-table.coffee\
+  js/face-table.coffee\
   js/set-color-tools.coffee\
   js/local-storage-tools.coffee\
   js/undo-tools.coffee\

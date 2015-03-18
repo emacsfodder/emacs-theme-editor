@@ -5,8 +5,8 @@
     <meta charset='utf-8'>
     <title>Emacs Theme Editor</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'>
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <link href='./css/bootstrap.min.css' rel='stylesheet'>
+    <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet'>
     <link href='./css/styles.css' rel='stylesheet'>
     <link href='./css/github.css' rel='stylesheet'>
     <link href='./css/spectrum.css' rel='stylesheet'>
@@ -39,8 +39,8 @@
             <!-- Left column -->
             <div class='panel-heading'>
               <div class='form-group'>
-                <label for='configname'>Theme name</label>
-                <input class='form-control' id='configname' placeholder='Theme name' type='text'>
+                <label for='theme-name'>Theme name</label>
+                <input class='form-control' id='theme-name' placeholder='Theme name' type='text'>
               </div>
             </div>
             <div class='panel-body color-controls-panel'>
@@ -98,21 +98,20 @@
           <!-- /right panel -->
         </div>
       </div>
-      <div class='row' id='config'></div>
+      <div class='row' id='theme-generated'></div>
     </div>
     <!-- /Main -->
     <footer class='text-center'>
-      <small>Emacs theme editor Licenced under GNU/GPL2</small>
-      <br>
-      <small>Better believe I need Javascript enabled!</small>
+      <small>Emacs theme editor Licenced under GNU/GPL2 - Jason Milkins 2015(c) - Javascript / modern browser required.</small>
     </footer>
     <!-- script references -->
     <script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js'></script>
-    <script src='./js/bootstrap.min.js'></script>
-    <script src='./js/highlight.pack.js'></script>
-    <script src='./js/lodash.js'></script>
-    <script src='./js/handlebars-v3.0.0.js'></script>
-    <script src='./js/spectrum.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
+    <script src='//cdn.rawgit.com/cferdinandi/smooth-scroll/master/dist/js/smooth-scroll.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js'></script>
+    <script src='./js/lib/spectrum.js'></script>
     <script src='./js/themes.js'></script>
   </body>
 </html>
