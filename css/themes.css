@@ -151,3 +151,38 @@ button.sp-cancel:hover {
   border-radius: 4px;
   padding: 8px;
 }
+
+code {
+  color: darkslategray;
+}
+
+.emacs-action {
+  font-size: 120%;
+  background-color: black;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+}
+
+.emacs-action .emacs-prompt {
+  color: lightblue;
+  font-weight: bold;
+}
+
+.emacs-action code {
+  background-color: transparent;
+  color: lightgray;
+}
+
+kbd {
+  background-color: white;
+  padding: 1px 3px;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.23);
+}
+
+.decorative-heading {
+  font-family: 'Oswald';
+  text-transform: uppercase;
+}

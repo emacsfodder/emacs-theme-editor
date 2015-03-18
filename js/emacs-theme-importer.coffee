@@ -41,7 +41,6 @@ fromEmacsColor = (color, default_color)->
 
   color
 
-
 emacsColors = [
   { name: 'White',                             color: '#FEFEFE' }
   { name: 'Yellow',                            color: '#FEFE00' }

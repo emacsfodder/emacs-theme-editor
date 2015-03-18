@@ -1,18 +1,24 @@
 <div class="msg col-sm-12">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Theme Code
+      <h4 class="decorative-heading">Generated Theme: {{name}}</h4>
     </div>
     <div class="panel-body">
-      <p>Copy this into <code>.emacs.d/{{name}}-theme.el</code></p>
+      <p><button class="btn btn-default" onclick="saveCurrentTheme()">Save Theme</button></p>
+      <p>After saving you can install the theme in Emacs by doing this:</p>
+      <div class="emacs-action">
+        <kbd>M-x</kbd> <code>package-install-file</code>
+        <br/><code><span class="emacs-prompt">Package file name:</span> {path}/{{name}}-theme.el</code>
+        <br>Where <code>{path}</code> is the location you saved {{name}}-theme.el
+      </div>
+
+      <p>Then you can activate it:</p>
+      <div class="emacs-action">
+        <kbd>M-x</kbd> <code>load-theme</code>
+        <br/><code><span class="emacs-prompt">Load custom theme:</span> {{name}}</code>
+      </div>
+      <h4>Generated Code</h4>
       <pre><code class="lisp">{{{generated}}}</code></pre>
-      <p>and put the following in your
-        <code>~/.emacs</code> or <code>~/.emacs.d/init.el</code>
-      </p>
-      <p>
-        <pre>(load-theme '{{name}} t)</pre>
-      </p>
-      <p>Use <a href="http://www.emacswiki.org/emacs/EvaluatingExpressions"><code>C-x C-e</code></a> To load the theme straight away</p>
     </div>
   </div>
 </div>

@@ -38,10 +38,6 @@
             .panel-body.color-controls-panel
               %ul#face-list.list-unstyled.collapse.in
               %ul.list-unstyled.collapse.in
-                %li
-                  .form-group.side-label
-                    %label{:for => "deftheme"} Emacs 24 deftheme
-                    %input#deftheme{:checked => "true", :name => "deftheme", :type => "checkbox", :value => "deftheme"}/
 
                 %li
                   .side-label
@@ -59,6 +55,7 @@
                   .form-group.side-label
                     %label{:for => "import_theme"} Import theme
                     %input#import_theme.btn{:name => "import_theme", :onchange => "importThemeHandler(event)", :type => "file"}/
+
         / /Left column
         .col-sm-9
           / right panel
