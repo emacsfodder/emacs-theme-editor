@@ -342,6 +342,9 @@ $(function() {
       preferredFormat: "hex",
       chooseText: "Set",
       cancelText: "Reset",
+      change: function(color) {
+        return console.log("Change event from spectrum", color);
+      },
       move: function(color) {
         return setColor(this.name, color.toHexString());
       }

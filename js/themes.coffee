@@ -29,6 +29,8 @@ $ ()->
       preferredFormat: "hex"
       chooseText: "Set"
       cancelText: "Reset"
+      change: (color)->
+        console.log "Change event from spectrum", color
       move: (color)->
         setColor this.name, color.toHexString()
 
