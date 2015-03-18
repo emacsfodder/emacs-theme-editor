@@ -4,16 +4,18 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "content-type"}/
     %meta{:charset => "utf-8"}/
     %title Emacs Theme Editor
-    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}/
-    %link{:href => "//fonts.googleapis.com/css?family=Oswald", :rel => "stylesheet", :type => "text/css"}/
-    %link{:href => "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css", :rel => "stylesheet"}/
-    %link{:href => "./css/styles.css", :rel => "stylesheet"}/
-    %link{:href => "./css/github.css", :rel => "stylesheet"}/
-    %link{:href => "./css/spectrum.css", :rel => "stylesheet"}/
-    %link{:href => "./css/themes.css", :rel => "stylesheet"}/
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}
+    %link{:href => "//fonts.googleapis.com/css?family=Oswald", :rel => "stylesheet", :type => "text/css"}
+    %link{:href => "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css", :rel => "stylesheet"}
+    %link{:href => "./css/styles.css", :rel => "stylesheet"}
+    %link{:href => "./css/github.css", :rel => "stylesheet"}
+    %link{:href => "./css/spectrum.css", :rel => "stylesheet"}
+    %link{:href => "./css/themes.css", :rel => "stylesheet"}
     /[if lt IE 9]
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
   %body
+    %div#github-banner
+      %a{:href => "https://github.com/emacsfodder/emacs-theme-editor"} Fork me on GitHub
     / Header
     #top-nav.navbar.navbar-inverse.navbar-static-top
       .container-fluid
@@ -42,11 +44,11 @@
                 %li
                   .side-label
                     #action-bar.btn-group{:role => "group", "aria-label" => "actions"}
-                      %button#local-storage.btn.btn-lg.btn-default{:onclick => "saveToLocalStorage()"}
+                      %button#local-storage.btn.btn-lg.btn-default{:onclick => "saveToLocalStorage()", "data-toggle" => "tooltip", :title => "Save to local storage"}
                         %span.glyphicon.glyphicon-plus
-                      %button#generate.btn.btn-lg.btn-default
+                      %button#generate.btn.btn-lg.btn-default{"data-toggle" => "tooltip", :title => "Generate EmacsLisp for download or copy"}
                         %span.glyphicon.glyphicon-floppy-save
-                      %button#load.btn.btn-lg.btn-default
+                      %button#load.btn.btn-lg.btn-default{"data-toggle" => "tooltip", :title => "Import a theme", :disabled => "disabled"}
                         %span.glyphicon.glyphicon-floppy-open
                 %li
                   .side-label

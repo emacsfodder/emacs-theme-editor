@@ -13,6 +13,9 @@ $ ()->
     updateURL: false
     offset: 0
 
+  $('[data-toggle=tooltip]').tooltip
+    placement: 'top'
+
   $.get './js/templates/theme-selector.handlebars', (file)->
     template = Handlebars.compile file
     $('#theme-selector').html template themes: themes
@@ -40,7 +43,6 @@ $ ()->
       $('#code-sample').html template App.code_spans
     .then ->
       setTheme dark_theme
-
 
   updateUserThemes() if _.keys(localStorage).length > 0
 

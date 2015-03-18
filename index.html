@@ -16,6 +16,9 @@
     <![endif]-->
   </head>
   <body>
+    <div id='github-banner'>
+      <a href='https://github.com/emacsfodder/emacs-theme-editor'>Fork me on GitHub</a>
+    </div>
     <!-- Header -->
     <div class='navbar navbar-inverse navbar-static-top' id='top-nav'>
       <div class='container-fluid'>
@@ -49,13 +52,13 @@
                 <li>
                   <div class='side-label'>
                     <div aria-label='actions' class='btn-group' id='action-bar' role='group'>
-                      <button class='btn btn-lg btn-default' id='local-storage' onclick='saveToLocalStorage()'>
+                      <button class='btn btn-lg btn-default' data-toggle='tooltip' id='local-storage' onclick='saveToLocalStorage()' title='Save to local storage'>
                         <span class='glyphicon glyphicon-plus'></span>
                       </button>
-                      <button class='btn btn-lg btn-default' id='generate'>
+                      <button class='btn btn-lg btn-default' data-toggle='tooltip' id='generate' title='Generate EmacsLisp for download or copy'>
                         <span class='glyphicon glyphicon-floppy-save'></span>
                       </button>
-                      <button class='btn btn-lg btn-default' id='load'>
+                      <button class='btn btn-lg btn-default' data-toggle='tooltip' disabled='disabled' id='load' title='Import a theme'>
                         <span class='glyphicon glyphicon-floppy-open'></span>
                       </button>
                     </div>
