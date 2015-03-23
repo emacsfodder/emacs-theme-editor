@@ -21,22 +21,22 @@ loadConfig = (conf)->
   name = (conf.match(/defun ([^ ]*)/) or conf.match(/deftheme ([^ ]*)/))[1]
   $('#theme-name').val(name)
   o = {}
-  _.each _.keys(App.face_table), (k)->
-    if $('#deftheme')[0].checked && App.face_table[k].rx24
-      r = App.face_table[k].rx24
+  _.each _.keys(App.faceTable), (k)->
+    if $('#deftheme')[0].checked && App.faceTable[k].rx24
+      r = App.faceTable[k].rx24
     else
-      r = App.face_table[k].rx
+      r = App.faceTable[k].rx
     o[k] = fromEmacsColor conf.match(r)
 
   setTheme o
 
-fromEmacsColor = (color, default_color)->
+fromEmacsColor = (color, defaultColor)->
   if color
     _.each emacsColors, (a)->
       if emacsColors[a].name.toString().toLowerCase() == c.toLowerCase()
         color = emacsColors[a].color
   else
-    return default_color if default_color
+    return defaultColor if defaultColor
     return "#ffffff"
 
   color

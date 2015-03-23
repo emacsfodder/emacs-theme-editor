@@ -2,16 +2,16 @@
 #
 ## TODO: Implement undo saves for color changes.  interface with
 ##       Spectrum to get the previous color.
-undo_theme = {}
+undoTheme = {}
 
 setUndoKey = (k, v)->
-  undo = JSON.parse @undo_theme
+  undo = JSON.parse @undoTheme
   undo[k] = v
-  @undo_theme = JSON.stringify undo
+  @undoTheme = JSON.stringify undo
 
 setUndoLive = ()->
-  @undo_theme = JSON.stringify App.live_theme
+  @undoTheme = JSON.stringify App.liveTheme
 
 undo = ()->
-  setTheme @undo_theme
-  setTheme @undo_theme
+  setTheme @undoTheme
+  setTheme @undoTheme

@@ -15,7 +15,7 @@ You can keep work in progress by clicking the  +  button under the font faces li
 
 The list of starter themes is held in  https://github.com/emacsfodder/emacs-theme-editor/blob/gh-pages/js/starter-themes.coffee if you'd like to add one, you can submit a pull request adding in the same format.
 
-To get the live theme you're editing in JSON format do: `JSON.stringify(App.live_theme)` in the Browser dev console.
+To get the live theme you're editing in JSON format do: `JSON.stringify(App.liveTheme)` in the Browser dev console.
 
 ## Quick roadmap (TODO list):
 
@@ -27,7 +27,7 @@ To get the live theme you're editing in JSON format do: `JSON.stringify(App.live
     -  junk chars and trim space
     - spaces to dashes
     - detect and remove "theme" from the name (it's auto appended only to the filename, but should not be in the theme name itself)
-- Add proper package header 
+- Add proper package header
 - Add more faces, I'll be happy to see [issues open on github](https://github.com/emacsfodder/emacs-theme-editor/issues/new) requesting different mode custom faces support.
 - Each face should be editable as one line (with foreground/background bold, italic, underline at least)
 - More things I haven't thought of yet...
@@ -37,5 +37,3 @@ Things I definitely won't do.
 - Support complex theme importing.
 - Add support for custom theme variables
 - that.
-
-

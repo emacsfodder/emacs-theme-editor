@@ -1,6 +1,6 @@
 generateDeftheme = (name)->
   $.get('./js/templates/deftheme.handlebars').then (t)->
-    o = _.extend {name: name}, App.live_theme
+    o = _.extend {name: name}, App.liveTheme
     compiled = Handlebars.compile t
     return compiled o
 
@@ -11,8 +11,8 @@ themeGenerator = ->
     $('#theme-name').val(name)
 
   generateDeftheme(name).then (generated)->
-    App.generated_theme = generated
-    App.generated_theme_name = "#{name}-theme.el"
+    App.generatedTheme = generated
+    App.generatedThemeName = "#{name}-theme.el"
     $.get './js/templates/deftheme-panel.handlebars', (file)->
       compiled = Handlebars.compile file
       ctx =
@@ -23,18 +23,18 @@ themeGenerator = ->
       smoothScroll.animateScroll null, '#theme-generated'
 
 saveCurrentTheme = ()->
-  return unless App.generated_theme && App.generated_theme_name
-  text_blob = new Blob([App.generated_theme], {type:'text/plain'});
-  download_link = document.createElement("a")
-  download_link.download = App.generated_theme_name
-  # download_link.innerHTML = ""
+  return unless App.generatedTheme && App.generatedThemeName
+  textBlob = new Blob([App.generatedTheme], {type:'text/plain'});
+  downloadLink = document.createElement("a")
+  downloadLink.download = App.generatedThemeName
+  # downloadLink.innerHTML = ""
   if (window.webkitURL != null)
     # Chrome can click the link without it being in the DOM
-    download_link.href = window.webkitURL.createObjectURL text_blob
+    downloadLink.href = window.webkitURL.createObjectURL textBlob
   else
     # Others cannot
-    download_link.href = window.URL.createObjectURL text_blob
-    download_link.onclick = (e)-> document.body.removeChild e.target
-    download_link.style.display = "none"
-    document.body.appendChild download_link
-  download_link.click()
+    downloadLink.href = window.URL.createObjectURL textBlob
+    downloadLink.onclick = (e)-> document.body.removeChild e.target
+    downloadLink.style.display = "none"
+    document.body.appendChild downloadLink
+  downloadLink.click()

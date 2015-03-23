@@ -8,7 +8,7 @@ App = App || {}
 # The el keys contain the css ids / classes, and the property names
 # to color. (using the css convention)
 
-App.code_spans =
+App.codeSpans =
   kw: '<span class="keyword">'
   cm: '<span class="comment">'
   bi: '<span class="builtin">'
@@ -22,7 +22,7 @@ App.code_spans =
   cu: '<span class="cursor">'
   sx: '</span>'
 
-App.face_table =
+App.faceTable =
   background:
     id: "rbg"
     title: "Background"

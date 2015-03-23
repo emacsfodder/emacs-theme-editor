@@ -22,7 +22,7 @@ $ ()->
 
   $.get './js/templates/face-list.handlebars', (file)->
     template = Handlebars.compile file
-    list = getFaceList App.face_table
+    list = getFaceList App.faceTable
     $('#face-list').html template list
 
     $('input.els').spectrum
@@ -40,9 +40,9 @@ $ ()->
   .then ->
     $.get './js/templates/python.handlebars', (file)->
       template = Handlebars.compile file
-      $('#code-sample').html template App.code_spans
+      $('#code-sample').html template App.codeSpans
     .then ->
-      setTheme dark_theme
+      setTheme darkTheme
 
   updateUserThemes() if _.keys(localStorage).length > 0
 

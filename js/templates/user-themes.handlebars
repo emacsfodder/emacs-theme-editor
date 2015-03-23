@@ -4,9 +4,9 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu">
-    {{#each user_themes}}
+    {{#each userThemes}}
       <li>
-        <a role="button" href="javascript:setTheme(user_themes['{{@key}}'], '{{@key}}'.toLowerCase())">{{@key}}
+        <a role="button" href="javascript:setTheme(userThemes['{{@key}}'], '{{@key}}'.toLowerCase())">{{@key}}
           <span class="user-theme-removal-icon glyphicon glyphicon-remove-circle" onclick="removeTheme('{{@key}}')"></span>
         </a>
       </li>

@@ -1,4 +1,4 @@
-light_theme = """
+lightTheme = """
 {
   "foreground":  "#242121",
   "builtin":     "#738aa1",
@@ -20,7 +20,7 @@ light_theme = """
 }
 """
 
-dark_theme = """
+darkTheme = """
 {
   "foreground": "#fdf4c1",
   "builtin":    "#fe8019",
@@ -42,7 +42,7 @@ dark_theme = """
 }
 """
 
-dark_tooth = """
+darkTooth = """
 {
   "foreground": "#fdf4c1",
   "builtin":    "#fe8019",
@@ -65,6 +65,6 @@ dark_tooth = """
 """
 
 themes =
-  "Dark":       dark_theme
-  "Light":      light_theme
-  "DarkTooth":  dark_tooth
+  "Dark":       darkTheme
+  "Light":      lightTheme
+  "DarkTooth":  darkTooth
