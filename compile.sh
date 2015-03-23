@@ -1,6 +1,5 @@
 #!/bin/sh
 cat \
-  js/string.undent.coffee\
   js/theme-generators.coffee\
   js/face-table.coffee\
   js/set-color-tools.coffee\
