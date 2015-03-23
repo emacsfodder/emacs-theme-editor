@@ -1,3 +1,14 @@
+.navbar-static-top {
+  margin-bottom:20px;
+}
+
+footer {
+  margin-top:10px;
+  padding-top:10px;
+  padding-bottom:10px;
+  background-color:#000000;
+  color: white;
+}
 
 pre {
   border: inherit;
@@ -221,22 +232,22 @@ kbd {
   transform:rotate(45deg);
   /* box-shadow: 1px 1px 5px 1px #666; */
 
-  background-image: linear-gradient(bottom, #093865 3%, #DDDDDD 5%, #093865 7%, #093865 93%, #DDDDDD 95%, #093865 97%);
-  background-image: -o-linear-gradient(bottom, #093865 3%, #DDDDDD 5%, #093865 7%, #093865 93%, #DDDDDD 95%, #093865 97%);
-  background-image: -moz-linear-gradient(bottom, #093865 3%, #DDDDDD 5%, #093865 7%, #093865 93%, #DDDDDD 95%, #093865 97%);
-  background-image: -webkit-linear-gradient(bottom, #093865 3%, #DDDDDD 5%, #093865 7%, #093865 93%, #DDDDDD 95%, #093865 97%);
-  background-image: -ms-linear-gradient(bottom, #093865 3%, #DDDDDD 5%, #093865 7%, #093865 93%, #DDDDDD 95%, #093865 97%);
+  background-image: linear-gradient(bottom, #000000 3%, #DDDDDD 5%, #000000 7%, #000000 93%, #DDDDDD 95%, #000000 97%);
+  background-image: -o-linear-gradient(bottom, #000000 3%, #DDDDDD 5%, #000000 7%, #000000 93%, #DDDDDD 95%, #000000 97%);
+  background-image: -moz-linear-gradient(bottom, #000000 3%, #DDDDDD 5%, #000000 7%, #000000 93%, #DDDDDD 95%, #000000 97%);
+  background-image: -webkit-linear-gradient(bottom, #000000 3%, #DDDDDD 5%, #000000 7%, #000000 93%, #DDDDDD 95%, #000000 97%);
+  background-image: -ms-linear-gradient(bottom, #000000 3%, #DDDDDD 5%, #000000 7%, #000000 93%, #DDDDDD 95%, #000000 97%);
 
   background-image: -webkit-gradient(
     linear,
     left bottom,
     left top,
-    color-stop(0.03, #093865),
+    color-stop(0.03, #000000),
     color-stop(0.05, #DDDDDD),
-    color-stop(0.07, #093865),
-    color-stop(0.93, #093865),
+    color-stop(0.07, #000000),
+    color-stop(0.93, #000000),
     color-stop(0.95, #DDDDDD),
-    color-stop(0.97, #093865)
+    color-stop(0.97, #000000)
   );
 
 
