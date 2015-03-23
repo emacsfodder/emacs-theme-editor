@@ -65,6 +65,6 @@ dark_tooth = """
 """
 
 themes =
-  "Dark":  dark_theme
-  "Light": light_theme
+  "Dark":       dark_theme
+  "Light":      light_theme
   "DarkTooth":  dark_tooth
