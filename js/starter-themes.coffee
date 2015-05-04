@@ -42,7 +42,7 @@ darkTheme = """
 }
 """
 
-darkTooth = """
+darkBooth = """
 {
   "foreground": "#fdf4c1",
   "builtin":    "#fe8019",
@@ -67,4 +67,4 @@ darkTooth = """
 themes =
   "Dark":       darkTheme
   "Light":      lightTheme
-  "DarkTooth":  darkTooth
+  "DarkBooth":  darkBooth
