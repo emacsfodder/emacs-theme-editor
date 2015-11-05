@@ -4,7 +4,6 @@ An interactiove theme editor for Emacs 24+
 
 ![](http://i.imgur.com/d3KNirF.png)
 
-
 ### Github repo : https://github.com/emacsfodder/emacs-theme-editor
 
 ## Overview
@@ -36,4 +35,3 @@ Things I definitely won't do.
 
 - Support complex theme importing.
 - Add support for custom theme variables
-- that.
