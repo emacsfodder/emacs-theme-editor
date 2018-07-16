@@ -7,6 +7,5 @@ cat \
   js/undo-tools.coffee\
   js/themes.coffee\
   js/starter-themes.coffee\
-  js/emacs-theme-importer.coffee\
   | coffee --bare --compile --stdio > js/themes.js
 
