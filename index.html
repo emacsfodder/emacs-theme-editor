@@ -1,113 +1,107 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
-<title>Emacs Theme Editor</title>
-<meta content='text/html; charset=UTF-8' http-equiv='content-type'>
-<meta charset='utf-8'>
-<meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'>
-<link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-<link href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet'>
-<link href='./css/github.css' rel='stylesheet'>
-<link href='./css/spectrum.css' rel='stylesheet'>
-<link href='./css/themes.css' rel='stylesheet'>
-<!--[if lt IE 9]>
+    <title>Emacs Theme Editor</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='content-type'>
+    <meta charset='utf-8'>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'>
+    <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='./css/github.css' rel='stylesheet'>
+    <link href='./css/spectrum.css' rel='stylesheet'>
+    <link href='./css/themes.css' rel='stylesheet'>
+    <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 </head>
+
 <body>
-<div id='github-banner'>
-<a href='https://github.com/emacsfodder/emacs-theme-editor'>Fork me on GitHub</a>
-</div>
-<!-- Header -->
-<div class='navbar navbar-inverse navbar-static-top' id='top-nav'>
-<div class='container-fluid'>
-<div class='navbar-header'>
-<button class='navbar-toggle' data-target='.navbar-collapse' data-toggle='collapse' type='button'>
-<span class='icon-bar'></span>
-<span class='icon-bar'></span>
-<span class='icon-bar'></span>
-</button>
-<a class='navbar-brand' href='#'>Emacs Theme Editor</a>
-</div>
-</div>
-<!-- /container -->
-</div>
-<!-- /Header -->
-<!-- Main -->
-<div class='container-fluid'>
-<div class='row'>
-<div class='col-sm-3'>
-<div class='panel panel-default'>
-<!-- Left column -->
-<div class='panel-heading'>
-<div class='form-group'>
-<label for='theme-name'>Theme name</label>
-<input class='form-control' id='theme-name' placeholder='Theme name' type='text'>
-</div>
-</div>
-<div class='panel-body color-controls-panel'>
-<ul class='list-unstyled collapse in' id='face-list'></ul>
-<ul class='list-unstyled collapse in'>
-<li>
-<div class='side-label'>
-<div aria-label='actions' class='btn-group' id='action-bar' role='group'>
-<button class='btn btn-lg btn-default' data-toggle='tooltip' id='local-storage' onclick='saveToLocalStorage()' title='Save to local storage'>
-<span class='glyphicon glyphicon-plus'></span>
-</button>
-<button class='btn btn-lg btn-default' data-toggle='tooltip' id='generate' title='Generate EmacsLisp for download or copy'>
-<span class='glyphicon glyphicon-floppy-save'></span>
-</button>
-<button class='btn btn-lg btn-default' data-toggle='tooltip' disabled='disabled' id='load' title='Import a theme'>
-<span class='glyphicon glyphicon-floppy-open'></span>
-</button>
-</div>
-</div>
-</li>
-<li>
-<div class='side-label'>
-<div id='user-themes'></div>
-</div>
-</li>
-<li class='hidden'>
-<div class='form-group side-label'>
-<label for='import_theme'>Import theme</label>
-<input class='btn' id='import_theme' name='import_theme' onchange='importThemeHandler(event)' type='file'>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<!-- /Left column -->
-<div class='col-sm-9'>
-<!-- right panel -->
-<div class='row'>
-<div class='panel panel-default'>
-<div class='panel-heading'>
-<div id='theme-selector'></div>
-</div>
-<div class='panel-body code-panel'>
-<div class='fringe default' id='code-sample'></div>
-</div>
-</div>
-</div>
-<!-- /right panel -->
-</div>
-</div>
-<div class='row' id='theme-generated'></div>
-</div>
-<!-- /Main -->
-<footer class='text-center'>
-<small>Emacs theme editor Licenced under GNU/GPL2 - Jason Milkins 2015(c) - Javascript / modern browser required.</small>
-</footer>
-<!-- script references -->
-<script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.js'></script>
-<script src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js'></script>
-<script src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js'></script>
-<script src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
-<script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js'></script>
-<script src='./js/lib/spectrum.js'></script>
-<script src='./js/lib/smooth-scroll.js'></script>
-<script src='./js/themes.js'></script>
+    <div id='github-banner'>
+        <a href='https://github.com/emacsfodder/emacs-theme-editor'>Fork me on GitHub</a>
+    </div>
+    <!-- Header -->
+    <div class='navbar navbar-inverse navbar-static-top' id='top-nav'>
+        <div class='container-fluid'>
+            <div class='navbar-header'>
+                <button class='navbar-toggle' data-target='.navbar-collapse' data-toggle='collapse' type='button'>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                    <span class='icon-bar'></span>
+                </button>
+                <a class='navbar-brand' href='#'>Emacs Theme Editor</a>
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /Header -->
+    <!-- Main -->
+    <div class='container-fluid'>
+        <div class='row'>
+            <div class='col-sm-3'>
+                <div class='panel panel-default'>
+                    <!-- Left column -->
+                    <div class='panel-heading'>
+                        <div class='form-group'>
+                            <label for='theme-name'>Theme name</label>
+                            <input class='form-control' id='theme-name' placeholder='Theme name' type='text'>
+                        </div>
+                    </div>
+                    <div class='panel-body color-controls-panel'>
+                        <ul class='list-unstyled collapse in' id='face-list'></ul>
+                        <ul class='list-unstyled collapse in'>
+                            <li>
+                                <div class='side-label'>
+                                    <div aria-label='actions' class='btn-group' id='action-bar' role='group'>
+                                        <button class='btn btn-lg btn-default' data-toggle='tooltip' id='local-storage' onclick='saveToLocalStorage()' title='Save to local storage'>
+                                            <span class='glyphicon glyphicon-plus'></span>
+                                        </button>
+                                        <button class='btn btn-lg btn-default' data-toggle='tooltip' id='generate' title='Generate EmacsLisp for download or copy'>
+                                            <span class='glyphicon glyphicon-floppy-save'></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class='side-label'>
+                                    <div id='user-themes'></div>
+                                </div>
+                            </li>                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /Left column -->
+            <div class='col-sm-9'>
+                <!-- right panel -->
+                <div class='row'>
+                    <div class='panel panel-default'>
+                        <div class='panel-heading'>
+                            <div id='theme-selector'></div>
+                        </div>
+                        <div class='panel-body code-panel'>
+                            <div class='fringe default' id='code-sample'></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /right panel -->
+            </div>
+        </div>
+        <div class='row' id='theme-generated'></div>
+    </div>
+    <!-- /Main -->
+    <footer class='text-center'>
+        <small>Emacs theme editor Licenced under GNU/GPL2 - Copyright (c) Jason Milkins 2015-2018 - Javascript / modern browser required.</small>
+    </footer>
+    <!-- script references -->
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js'></script>
+    <script src='//cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@11.0.2/dist/js/smooth-scroll.min.js'></script>
+    <script src='./js/lib/spectrum.js'></script>
+    <script src='./js/themes.js'></script>
 </body>
+
 </html>

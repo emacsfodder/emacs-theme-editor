@@ -10,4 +10,3 @@ cat \
   js/emacs-theme-importer.coffee\
   | coffee --bare --compile --stdio > js/themes.js
 
-haml index.haml index.html
