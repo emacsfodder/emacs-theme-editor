@@ -1,6 +1,6 @@
 # Emacs Theme Editor
 
-An interactiove theme editor for Emacs 24+
+An interactive theme editor for Emacs.
 
 ![](http://i.imgur.com/d3KNirF.png)
 
