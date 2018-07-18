@@ -34,6 +34,7 @@ themeGenerator = () => {
       };
       c = compiled(ctx);
       $('#theme-generated').html(c);
+      window.location.hash = "theme-generated";
     });
   });
 };
