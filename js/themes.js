@@ -304,10 +304,10 @@ $(() => {
       preferredFormat: "hex",
       chooseText: "Set",
       cancelText: "Reset",
-      change: color => {
+      change: function(color) {
         console.log("Change event from spectrum", color);
       },
-      move: color => {
+      move: function(color) {
         return setColor(this.name, color.toHexString());
       }
     });
