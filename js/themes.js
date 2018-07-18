@@ -1,4 +1,4 @@
-const App = App || {};
+const App = {};
 
 App.liveTheme = {};
 
@@ -59,8 +59,6 @@ const saveCurrentTheme = () => {
   }
   downloadLink.click();
 };
-
-App = App || {};
 
 App.codeSpans = {
   kw: '<span class="keyword">',
