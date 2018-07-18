@@ -304,7 +304,7 @@ $(() => {
       preferredFormat: "hex",
       chooseText: "Set",
       cancelText: "Reset",
-      change: function(color) {
+      change: color => {
         console.log("Change event from spectrum", color);
       },
       move: function(color) {
