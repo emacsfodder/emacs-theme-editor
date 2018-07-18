@@ -1,10 +1,8 @@
-var App, closeThemeBox, darkBooth, darkTheme, elp, generateDeftheme, getColor, getFaceList, lightTheme, masterKeys, removeTheme, saveCurrentTheme, saveToLocalStorage, setColor, setTheme, setUndoKey, setUndoLive, themeGenerator, themes, undo, undoTheme, updateUserThemes, userThemes;
-
-App = App || {};
+const App = App || {};
 
 App.liveTheme = {};
 
-generateDeftheme = name => {
+const generateDeftheme = name => {
   return $.get('./js/templates/deftheme.handlebars').then(t => {
     var compiled, o;
     o = _.extend({
@@ -15,7 +13,7 @@ generateDeftheme = name => {
   });
 };
 
-themeGenerator = () => {
+const themeGenerator = () => {
   var name;
   name = $('#theme-name').val();
   if (!name) {
@@ -39,7 +37,7 @@ themeGenerator = () => {
   });
 };
 
-saveCurrentTheme = () => {
+const saveCurrentTheme = () => {
   var downloadLink, textBlob;
   if (!(App.generatedTheme && App.generatedThemeName)) {
     return;
@@ -188,7 +186,7 @@ App.faceTable = {
   }
 };
 
-getFaceList = t => {
+const getFaceList = t => {
   return _.keys(t).map(k => ({
       name: k,
       id: t[k].id,
@@ -197,26 +195,26 @@ getFaceList = t => {
 };
 
 
-masterKeys = () => {
+const masterKeys = () => {
   return _.keys(App.faceTable);
 };
 
-elp = k => {
+const elp = k => {
   return App.faceTable[k].el[1];
 };
 
-getColor = k => {
+const getColor = k => {
   return tinycolor($(App.faceTable[k].el[0]).css(elp(k))).toHexString();
 };
 
-setColor = (k, col) => {
+const setColor = (k, col) => {
   $(App.faceTable[k].el[0]).css(elp(k), col);
   $("input[name=" + k + "]").spectrum("set", col);
   $("input[name=" + k + "]").val(col);
   return App.liveTheme[k] = col;
 };
 
-setTheme = (themeJson, name) => {
+const setTheme = (themeJson, name) => {
   if (name == null) {
     name = null;
   }
@@ -233,9 +231,9 @@ setTheme = (themeJson, name) => {
   }
 };
 
-userThemes = {};
+let userThemes = {};
 
-updateUserThemes = () => {
+const updateUserThemes = () => {
   $('#user-themes').empty();
   _.each(_.keys(userThemes), k => { delete userThemes[k]; });
   _.each(_.keys(localStorage), t => {
@@ -252,7 +250,7 @@ updateUserThemes = () => {
   }
 };
 
-saveToLocalStorage = () => {
+const saveToLocalStorage = () => {
   var name;
   name = $('#theme-name').val();
   if (!name) {
@@ -269,14 +267,14 @@ saveToLocalStorage = () => {
   updateUserThemes();
 };
 
-removeTheme = name => {
+const removeTheme = name => {
   if (confirm("Remove theme " + name)) {
     localStorage.removeItem(name);
     updateUserThemes();
   }
 };
 
-closeThemeBox = () => {
+const closeThemeBox = () => {
   $('#theme-generated').hide();
   $('#theme-generated .msg').remove();
   $('#generate').removeAttr('disabled');
@@ -329,7 +327,7 @@ $(() => {
   $(document).on('click', '#generate', themeGenerator);
 });
 
-lightTheme = `{
+const lightTheme = `{
   "foreground":  "#242121",
   "builtin":     "#738aa1",
   "comment":     "#7d827d",
@@ -349,7 +347,7 @@ lightTheme = `{
   "prompt":      "#7299ff"
 }`;
 
-darkTheme = `{
+const darkTheme = `{
   "foreground": "#fdf4c1",
   "builtin":    "#fe8019",
   "comment":    "#7c6f64",
@@ -369,7 +367,7 @@ darkTheme = `{
   "prompt":     "#b8bb26"
 }`;
 
-darkBooth = `{
+const darkBooth = `{
   "foreground": "#fdf4c1",
   "builtin":    "#fe8019",
   "comment":    "#7c6f64",
@@ -389,7 +387,7 @@ darkBooth = `{
   "prompt":     "#61acbb"
 }`;
 
-themes = {
+let themes = {
   "Dark": darkTheme,
   "Light": lightTheme,
   "DarkBooth": darkBooth
