@@ -212,7 +212,7 @@ setColor = (k, col) => {
   $(App.faceTable[k].el[0]).css(elp(k), col);
   $("input[name=" + k + "]").spectrum("set", col);
   $("input[name=" + k + "]").val(col);
-  App.liveTheme[k] = col;
+  return App.liveTheme[k] = col;
 };
 
 setTheme = (themeJson, name) => {
@@ -308,7 +308,7 @@ $(() => {
         console.log("Change event from spectrum", color);
       },
       move: color => {
-        setColor(this.name, color.toHexString());
+        return setColor(this.name, color.toHexString());
       }
     });
   }).then(() => {
